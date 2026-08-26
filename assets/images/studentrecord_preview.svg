@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D1117"/>
+      <stop offset="100%" style="stop-color:#0a0e14"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  
+  <!-- Subtle grid -->
+  <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+    <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#A371F7" stroke-width="0.3" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+
+  <!-- Window chrome -->
+  <rect x="60" y="60" width="1080" height="555" rx="12" fill="#1c2330" stroke="#30363d" stroke-width="1.5"/>
+  
+  <!-- Title bar -->
+  <rect x="60" y="60" width="1080" height="38" rx="12" fill="#161B22"/>
+  <rect x="60" y="85" width="1080" height="13" fill="#161B22"/>
+  <circle cx="92" cy="79" r="7" fill="#ff5f57"/>
+  <circle cx="114" cy="79" r="7" fill="#febc2e"/>
+  <circle cx="136" cy="79" r="7" fill="#28c840"/>
+  <text x="600" y="83" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">Student Record System — VB.NET WinForms Application</text>
+
+  <!-- Sidebar -->
+  <rect x="60" y="98" width="200" height="517" fill="#0D1117" stroke="#21262d" stroke-width="0" rx="0"/>
+  
+  <!-- Sidebar menu items -->
+  <rect x="60" y="98" width="200" height="48" fill="rgba(88,166,255,0.12)"/>
+  <rect x="60" y="98" width="3" height="48" fill="#58A6FF"/>
+  <text x="85" y="125" font-family="JetBrains Mono, monospace" font-size="11" fill="#58A6FF">📋 Student List</text>
+  
+  <text x="85" y="170" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">👤 Add Student</text>
+  <text x="85" y="213" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">🔍 Search</text>
+  <text x="85" y="256" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">📊 Reports</text>
+  <text x="85" y="299" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">⚙️ Settings</text>
+  
+  <!-- Main content area -->
+  <rect x="260" y="98" width="880" height="517" fill="#0a0e14"/>
+  
+  <!-- Header bar in content area -->
+  <rect x="260" y="98" width="880" height="50" fill="#161B22" stroke="#21262d" stroke-width="0"/>
+  <text x="280" y="128" font-family="JetBrains Mono, monospace" font-size="14" fill="#F0F6FC" font-weight="bold">Student Records</text>
+  
+  <!-- Action buttons -->
+  <rect x="870" y="110" width="100" height="28" rx="6" fill="#58A6FF"/>
+  <text x="920" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="white">+ Add New</text>
+  
+  <rect x="980" y="110" width="90" height="28" rx="6" fill="transparent" stroke="#30363d" stroke-width="1"/>
+  <text x="1025" y="128" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Export CSV</text>
+
+  <!-- Search bar -->
+  <rect x="278" y="162" width="300" height="32" rx="6" fill="#161B22" stroke="#30363d" stroke-width="1"/>
+  <text x="296" y="182" font-family="JetBrains Mono, monospace" font-size="10" fill="#3d4451">🔍 Search students...</text>
+
+  <!-- Filter -->
+  <rect x="590" y="162" width="120" height="32" rx="6" fill="#161B22" stroke="#30363d" stroke-width="1"/>
+  <text x="650" y="182" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Grade Level ▾</text>
+
+  <!-- Table -->
+  <rect x="278" y="208" width="842" height="380" rx="8" fill="#161B22" stroke="#21262d" stroke-width="1"/>
+  
+  <!-- Table header -->
+  <rect x="278" y="208" width="842" height="36" rx="8" fill="#1c2330"/>
+  <rect x="278" y="228" width="842" height="16" fill="#1c2330"/>
+  <text x="300" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">ID</text>
+  <text x="355" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Student Name</text>
+  <text x="560" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Student ID</text>
+  <text x="690" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Grade</text>
+  <text x="770" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Section</text>
+  <text x="870" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">GPA</text>
+  <text x="940" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Status</text>
+  <text x="1010" y="231" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Actions</text>
+
+  <!-- Table row 1 (selected) -->
+  <rect x="278" y="244" width="842" height="36" fill="rgba(88,166,255,0.08)" stroke="rgba(88,166,255,0.2)" stroke-width="0"/>
+  <rect x="278" y="244" width="3" height="36" fill="#58A6FF"/>
+  <text x="300" y="267" font-family="JetBrains Mono, monospace" font-size="10" fill="#F0F6FC">001</text>
+  <text x="355" y="267" font-family="JetBrains Mono, monospace" font-size="10" fill="#F0F6FC">Ana Reyes</text>
+  <text x="560" y="267" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">2024-CS-001</text>
+  <text x="690" y="267" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">3rd Year</text>
+  <text x="770" y="267" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">CS-A</text>
+  <text x="870" y="267" font-family="JetBrains Mono, monospace" font-size="10" fill="#3fb950">1.25</text>
+  <rect x="940" y="254" width="52" height="18" rx="4" fill="rgba(63,185,80,0.12)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="966" y="267" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#3fb950">Active</text>
+
+  <!-- Row 2 -->
+  <rect x="278" y="280" width="842" height="36" fill="transparent"/>
+  <text x="300" y="303" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">002</text>
+  <text x="355" y="303" font-family="JetBrains Mono, monospace" font-size="10" fill="#F0F6FC">Ben Santos</text>
+  <text x="560" y="303" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">2024-CS-002</text>
+  <text x="690" y="303" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">3rd Year</text>
+  <text x="770" y="303" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">CS-B</text>
+  <text x="870" y="303" font-family="JetBrains Mono, monospace" font-size="10" fill="#3fb950">1.50</text>
+  <rect x="940" y="290" width="52" height="18" rx="4" fill="rgba(63,185,80,0.12)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="966" y="303" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#3fb950">Active</text>
+  <line x1="278" y1="316" x2="1120" y2="316" stroke="#21262d" stroke-width="0.5"/>
+
+  <!-- Row 3 -->
+  <text x="300" y="338" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">003</text>
+  <text x="355" y="338" font-family="JetBrains Mono, monospace" font-size="10" fill="#F0F6FC">Clara Lim</text>
+  <text x="560" y="338" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">2024-CS-003</text>
+  <text x="690" y="338" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">3rd Year</text>
+  <text x="770" y="338" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">CS-A</text>
+  <text x="870" y="338" font-family="JetBrains Mono, monospace" font-size="10" fill="#d29922">2.00</text>
+  <rect x="940" y="325" width="52" height="18" rx="4" fill="rgba(63,185,80,0.12)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="966" y="338" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#3fb950">Active</text>
+  <line x1="278" y1="351" x2="1120" y2="351" stroke="#21262d" stroke-width="0.5"/>
+
+  <!-- Row 4 -->
+  <text x="300" y="373" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">004</text>
+  <text x="355" y="373" font-family="JetBrains Mono, monospace" font-size="10" fill="#F0F6FC">Diego Cruz</text>
+  <text x="560" y="373" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">2024-CS-004</text>
+  <text x="690" y="373" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">3rd Year</text>
+  <text x="770" y="373" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">CS-B</text>
+  <text x="870" y="373" font-family="JetBrains Mono, monospace" font-size="10" fill="#f85149">3.00</text>
+  <rect x="940" y="360" width="64" height="18" rx="4" fill="rgba(210,153,34,0.12)" stroke="rgba(210,153,34,0.3)" stroke-width="1"/>
+  <text x="972" y="373" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#d29922">Probation</text>
+  <line x1="278" y1="386" x2="1120" y2="386" stroke="#21262d" stroke-width="0.5"/>
+
+  <!-- Row 5 -->
+  <text x="300" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">005</text>
+  <text x="355" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#F0F6FC">Eva Torres</text>
+  <text x="560" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">2024-CS-005</text>
+  <text x="690" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">3rd Year</text>
+  <text x="770" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">CS-A</text>
+  <text x="870" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#3fb950">1.75</text>
+  <rect x="940" y="395" width="52" height="18" rx="4" fill="rgba(63,185,80,0.12)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="966" y="408" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#3fb950">Active</text>
+
+  <!-- Pagination -->
+  <text x="290" y="570" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Showing 1-5 of 48 students</text>
+  <rect x="1000" y="555" width="28" height="24" rx="4" fill="#161B22" stroke="#30363d" stroke-width="1"/>
+  <text x="1014" y="571" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">‹</text>
+  <rect x="1034" y="555" width="28" height="24" rx="4" fill="#58A6FF"/>
+  <text x="1048" y="571" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="white">1</text>
+  <rect x="1068" y="555" width="28" height="24" rx="4" fill="#161B22" stroke="#30363d" stroke-width="1"/>
+  <text x="1082" y="571" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">2</text>
+  <rect x="1102" y="555" width="28" height="24" rx="4" fill="#161B22" stroke="#30363d" stroke-width="1"/>
+  <text x="1116" y="571" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">›</text>
+
+  <!-- Bottom label -->
+  <text x="600" y="652" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#30363d">Student Record System — VB.NET · WinForms · Database</text>
+</svg>

@@ -1,0 +1,153 @@
+/**
+ * projects.js — Project data and modal content
+ * Jhon Eric Arbas Portfolio
+ */
+
+const PROJECTS = {
+  safealert: {
+    num: '01',
+    title: 'SafeAlert',
+    category: 'Web Application • IoT • Emergency Response System',
+    imgSrc: 'assets/images/safealert_preview.svg',
+    imgAlt: 'SafeAlert IoT emergency response dashboard',
+    imgClass: 'preview-safealert',
+    overview: `SafeAlert is a comprehensive IoT-based wearable fall detection and emergency response
+      system developed as a Computer Science thesis/capstone project. It integrates embedded hardware,
+      real-time web application monitoring, and Android mobile notifications into a cohesive
+      emergency response ecosystem.`,
+    problem: `Falls among elderly and vulnerable individuals are a leading cause of injury and medical
+      emergencies. Traditional alert systems are often reactive and slow — relying on the individual
+      to manually trigger an alert. SafeAlert aims to solve this by automatically detecting falls
+      and immediately dispatching emergency notifications without requiring user action.`,
+    solution: `An ESP32-based wearable device continuously monitors motion using accelerometer and
+      gyroscope sensors. Upon fall detection, it transmits real-time data to a web application
+      dashboard and triggers emergency alerts — notifying designated contacts and displaying
+      emergency information including location and alert timestamps.`,
+    features: [
+      'Automatic fall detection via ESP32 + sensors',
+      'Real-time emergency alert dashboard',
+      'Web application monitoring interface',
+      'Android mobile notifications',
+      'Alert history and event logging',
+      'Emergency contact management',
+      'System health monitoring',
+      'IoT device status tracking',
+    ],
+    tech: ['ESP32', 'IoT', 'Sensors', 'Web Development', 'Database', 'Android', 'JavaScript', 'HTML/CSS'],
+    process: `Development followed a hardware-first approach: sensor selection and ESP32 firmware,
+      then data pipeline design, followed by web dashboard development and Android integration.
+      Testing included real-world fall simulation scenarios with iterative sensor calibration.`,
+    result: `A functional end-to-end IoT emergency response system demonstrating hardware-software
+      integration competency, practical CS application, and real-world problem solving.`,
+    github: '#',
+    live: null,
+  },
+
+  foxlearn: {
+    num: '02',
+    title: 'FOX LEARN',
+    category: 'UI/UX Design • E-Learning Mobile Application',
+    imgSrc: 'assets/images/foxlearn_preview.svg',
+    imgAlt: 'FOX LEARN e-learning mobile app design',
+    imgClass: 'preview-foxlearn',
+    overview: `FOX LEARN is a fully designed e-learning mobile application crafted in Figma,
+      featuring a clean, friendly, and learner-focused interface. The project emphasizes accessible
+      UI/UX design for online education — covering user flows, component design, and interactive prototyping.`,
+    problem: `Many e-learning platforms feel overwhelming or visually cold, leading to poor learner
+      engagement and retention. There is a need for mobile learning applications that are both
+      functionally clear and emotionally engaging — especially for younger learners.`,
+    solution: `FOX LEARN was designed with a warm, approachable visual identity featuring a fox mascot,
+      clear information hierarchy, and intuitive navigation patterns. The design prioritizes
+      learner motivation, progress visibility, and reduced cognitive load.`,
+    features: [
+      'Complete Figma design system',
+      'Mobile-first UI components',
+      'Interactive prototype flows',
+      'Course catalog interface',
+      'Progress tracking screens',
+      'Quiz and assessment UI',
+      'User onboarding flow',
+      'Wireframes and hi-fi mockups',
+    ],
+    tech: ['Figma', 'UI Design', 'UX Design', 'Prototyping', 'Wireframing', 'Mobile App Design'],
+    process: `Started with user research and wireframes, then developed a design system with the
+      FOX LEARN visual identity. Hi-fidelity screens were designed section by section, followed
+      by interactive prototype linking in Figma for user flow validation.`,
+    result: `A polished, production-ready Figma design of an e-learning mobile app demonstrating
+      professional UI/UX skills, design thinking, and mobile design expertise.`,
+    github: null,
+    live: null,
+    figma: '#',
+  },
+
+  budgetpal: {
+    num: '03',
+    title: 'BudgetPal',
+    category: 'Web Application • UI/UX • Database',
+    imgSrc: 'assets/images/budgetpal_preview.svg',
+    imgAlt: 'BudgetPal personal finance web application',
+    imgClass: 'preview-budgetpal',
+    overview: `BudgetPal is a personal budgeting and transaction management web application designed
+      to help users track their income, expenses, and financial goals through a clean, intuitive
+      interface with comprehensive data visualization.`,
+    problem: `Personal finance management is often done manually through spreadsheets or complex apps
+      that overwhelm users with features. There is a need for a simple, focused tool that makes
+      budgeting approachable and actionable for everyday users.`,
+    solution: `BudgetPal provides a streamlined dashboard with clear budget overviews, easy transaction
+      entry, category management, and visual spending breakdowns. The design prioritizes simplicity
+      and daily usability over feature complexity.`,
+    features: [
+      'Financial dashboard overview',
+      'Income and expense tracking',
+      'Transaction history and search',
+      'Budget category management',
+      'Visual spending analytics',
+      'Database-backed data persistence',
+      'Intuitive data entry forms',
+      'Responsive web interface',
+    ],
+    tech: ['Web Development', 'JavaScript', 'HTML/CSS', 'UI/UX Design', 'Database'],
+    process: `Designed UI mockups first, then built the frontend with clean HTML/CSS and JavaScript.
+      Database schema was designed for efficient transaction querying and budget aggregation.`,
+    result: `A functional personal finance web application demonstrating full-stack web development,
+      UI/UX design integration, and database-driven application design.`,
+    github: '#',
+    live: null,
+  },
+
+  studentrecord: {
+    num: '04',
+    title: 'Student Record System',
+    category: 'Desktop Application • Database',
+    imgSrc: 'assets/images/studentrecord_preview.svg',
+    imgAlt: 'Student Record System desktop application',
+    imgClass: 'preview-studentrecord',
+    overview: `The Student Record System is a desktop-based application built with Visual Basic .NET
+      and WinForms for efficiently managing student information within an educational institution.
+      It provides a robust interface for CRUD operations on student records with database integration.`,
+    problem: `Manual student record management through paper or simple spreadsheets leads to
+      inefficiency, data inconsistency, and difficulty in information retrieval. Educational
+      institutions need organized digital solutions for managing student data securely.`,
+    solution: `A purpose-built desktop application providing structured data entry, editing, deletion,
+      and retrieval of student records. The system features organized forms, searchable record
+      tables, and reliable database connectivity.`,
+    features: [
+      'Student profile management',
+      'Complete CRUD operations',
+      'Searchable student database',
+      'Structured data entry forms',
+      'Record filtering and sorting',
+      'Desktop GUI with WinForms',
+      'Database-backed persistence',
+      'Clean tabular data display',
+    ],
+    tech: ['Visual Basic .NET', 'WinForms', 'Database', 'Desktop Development'],
+    process: `Began with database schema design, followed by UI design in the WinForms designer.
+      Business logic was implemented with VB.NET, connecting UI actions to database operations
+      with proper validation and error handling.`,
+    result: `A fully functional student record management desktop application demonstrating
+      VB.NET proficiency, WinForms development, and database application design.`,
+    github: '#',
+    live: null,
+  },
+};

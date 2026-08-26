@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0f06"/>
+      <stop offset="100%" style="stop-color:#161B22"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF8C32"/>
+      <stop offset="100%" style="stop-color:#FF6B3D"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  
+  <!-- Warm glow -->
+  <ellipse cx="600" cy="340" rx="400" ry="280" fill="rgba(255,140,50,0.05)"/>
+  
+  <!-- Title bar -->
+  <text x="600" y="60" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="rgba(255,140,50,0.5)" letter-spacing="3">FOX LEARN — E-LEARNING MOBILE APP</text>
+  
+  <!-- Phone mockup 1 - Course Catalog -->
+  <rect x="140" y="90" width="220" height="440" rx="28" fill="#1c2330" stroke="#2d2d2d" stroke-width="2"/>
+  <rect x="152" y="102" width="196" height="416" rx="20" fill="#0a0a0a"/>
+  
+  <!-- Status bar -->
+  <rect x="152" y="102" width="196" height="24" rx="20" fill="#111"/>
+  
+  <!-- App header -->
+  <rect x="152" y="126" width="196" height="56" fill="#FF8C32"/>
+  <text x="250" y="148" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="white" font-weight="bold">FOX LEARN</text>
+  <text x="250" y="163" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.8)">Learn. Grow. Achieve.</text>
+  
+  <!-- Fox logo area -->
+  <circle cx="250" cy="155" r="0"/>
+  
+  <!-- Course cards -->
+  <rect x="160" y="192" width="180" height="64" rx="10" fill="#1a1a2e" stroke="#2a2a3e" stroke-width="1"/>
+  <rect x="160" y="192" width="8" height="64" rx="3" fill="#FF8C32"/>
+  <text x="177" y="213" font-family="Arial, sans-serif" font-size="9" fill="white" font-weight="bold">Mathematics</text>
+  <text x="177" y="228" font-family="Arial, sans-serif" font-size="8" fill="#8B8B9E">12 Lessons · Beginner</text>
+  <rect x="177" y="235" width="80" height="6" rx="3" fill="#2a2a2a"/>
+  <rect x="177" y="235" width="52" height="6" rx="3" fill="#FF8C32"/>
+  
+  <rect x="160" y="266" width="180" height="64" rx="10" fill="#1a1a2e" stroke="#2a2a3e" stroke-width="1"/>
+  <rect x="160" y="266" width="8" height="64" rx="3" fill="#4ECDC4"/>
+  <text x="177" y="287" font-family="Arial, sans-serif" font-size="9" fill="white" font-weight="bold">Science</text>
+  <text x="177" y="302" font-family="Arial, sans-serif" font-size="8" fill="#8B8B9E">8 Lessons · Intermediate</text>
+  <rect x="177" y="309" width="80" height="6" rx="3" fill="#2a2a2a"/>
+  <rect x="177" y="309" width="35" height="6" rx="3" fill="#4ECDC4"/>
+  
+  <rect x="160" y="340" width="180" height="64" rx="10" fill="#1a1a2e" stroke="#2a2a3e" stroke-width="1"/>
+  <rect x="160" y="340" width="8" height="64" rx="3" fill="#A371F7"/>
+  <text x="177" y="361" font-family="Arial, sans-serif" font-size="9" fill="white" font-weight="bold">English</text>
+  <text x="177" y="376" font-family="Arial, sans-serif" font-size="8" fill="#8B8B9E">15 Lessons · All levels</text>
+  <rect x="177" y="383" width="80" height="6" rx="3" fill="#2a2a2a"/>
+  <rect x="177" y="383" width="65" height="6" rx="3" fill="#A371F7"/>
+  
+  <!-- Phone mockup 2 - Lesson -->
+  <rect x="490" y="70" width="220" height="440" rx="28" fill="#1c2330" stroke="#FF8C32" stroke-width="2"/>
+  <rect x="502" y="82" width="196" height="416" rx="20" fill="#0a0a0a"/>
+  
+  <rect x="502" y="82" width="196" height="56" fill="#FF8C32"/>
+  <text x="600" y="106" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Lesson 4: Fractions</text>
+  <text x="600" y="121" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.8)">Mathematics · Chapter 2</text>
+  
+  <!-- Lesson content area -->
+  <rect x="510" y="146" width="180" height="100" rx="10" fill="#1a1a1a"/>
+  <text x="600" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="28" fill="#FF8C32" font-weight="bold">¾</text>
+  <text x="600" y="210" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8B8B9E">Three Quarters</text>
+  
+  <!-- Quiz question -->
+  <rect x="510" y="256" width="180" height="72" rx="10" fill="#1a1a2e"/>
+  <text x="520" y="276" font-family="Arial, sans-serif" font-size="9" fill="white">What is 1/2 + 1/4?</text>
+  <rect x="518" y="285" width="78" height="22" rx="6" fill="#FF8C32"/>
+  <text x="557" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="white">A) 3/4 ✓</text>
+  <rect x="604" y="285" width="78" height="22" rx="6" fill="#1c1c2e" stroke="#333" stroke-width="1"/>
+  <text x="643" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" fill="#8B8B9E">B) 1/2</text>
+  
+  <!-- Progress -->
+  <text x="520" y="358" font-family="Arial, sans-serif" font-size="9" fill="#8B8B9E">Progress</text>
+  <rect x="518" y="365" width="160" height="8" rx="4" fill="#2a2a2a"/>
+  <rect x="518" y="365" width="95" height="8" rx="4" fill="#FF8C32"/>
+  <text x="688" y="374" font-family="Arial, sans-serif" font-size="8" fill="#FF8C32">59%</text>
+  
+  <!-- Phone mockup 3 - Profile -->
+  <rect x="840" y="90" width="220" height="440" rx="28" fill="#1c2330" stroke="#2d2d2d" stroke-width="2"/>
+  <rect x="852" y="102" width="196" height="416" rx="20" fill="#0a0a0a"/>
+  
+  <rect x="852" y="102" width="196" height="100" fill="#FF8C32"/>
+  <circle cx="950" cy="145" r="30" fill="#FFB347" stroke="white" stroke-width="3"/>
+  <text x="950" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#FF6B00">🦊</text>
+  <text x="950" y="192" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white" font-weight="bold">Student Profile</text>
+  
+  <!-- Stats -->
+  <rect x="860" y="212" width="56" height="56" rx="8" fill="#1a1a2e"/>
+  <text x="888" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#FF8C32" font-weight="bold">7</text>
+  <text x="888" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#8B8B9E">Day Streak</text>
+  
+  <rect x="922" y="212" width="56" height="56" rx="8" fill="#1a1a2e"/>
+  <text x="950" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#4ECDC4" font-weight="bold">42</text>
+  <text x="950" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#8B8B9E">Lessons</text>
+  
+  <rect x="984" y="212" width="56" height="56" rx="8" fill="#1a1a2e"/>
+  <text x="1012" y="236" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#A371F7" font-weight="bold">3</text>
+  <text x="1012" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" fill="#8B8B9E">Badges</text>
+  
+  <!-- Achievements -->
+  <text x="865" y="295" font-family="Arial, sans-serif" font-size="9" fill="#FF8C32">Achievements</text>
+  <rect x="862" y="303" width="30" height="30" rx="8" fill="#1a1a2e"/>
+  <text x="877" y="323" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">⭐</text>
+  <rect x="898" y="303" width="30" height="30" rx="8" fill="#1a1a2e"/>
+  <text x="913" y="323" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">🏆</text>
+  <rect x="934" y="303" width="30" height="30" rx="8" fill="#1a1a2e"/>
+  <text x="949" y="323" text-anchor="middle" font-family="Arial, sans-serif" font-size="14">🔥</text>
+  
+  <!-- Bottom label -->
+  <text x="600" y="650" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="rgba(255,140,50,0.3)">FOX LEARN — UI/UX Design · Figma</text>
+</svg>

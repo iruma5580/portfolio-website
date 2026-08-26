@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — JEA Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="dashboard-page">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo"><span class="bracket">[</span>JEA<span class="bracket">]</span></span>
+      <p class="sidebar-subtitle">Portfolio Admin</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Content</span>
+
+      <button class="nav-item active" data-panel="projects">
+        <i class="fas fa-folder-open"></i>
+        <span>Projects</span>
+      </button>
+
+      <button class="nav-item" data-panel="profile">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </button>
+
+      <button class="nav-item" data-panel="contact">
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </button>
+
+      <span class="nav-section-label">System</span>
+
+      <button class="nav-item" data-panel="settings">
+        <i class="fas fa-cog"></i>
+        <span>Settings</span>
+      </button>
+
+      <a href="/" target="_blank" class="nav-item">
+        <i class="fas fa-external-link-alt"></i>
+        <span>View Site</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-status">
+        <span class="status-dot"></span>
+        <span>Server Online</span>
+      </div>
+      <button class="nav-item btn-ghost" id="logout-btn" style="margin-top:4px;">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="main-content">
+    <div class="topbar">
+      <div>
+        <span class="topbar-title" id="topbar-title">Projects</span>
+        <span class="topbar-tag" id="topbar-sub"> / portfolio.json</span>
+      </div>
+      <div class="topbar-actions">
+        <span class="mono" style="font-size:0.72rem;color:var(--text3)">localhost:3000/admin</span>
+      </div>
+    </div>
+
+    <div class="content-area">
+
+      <!-- ═══ PROJECTS PANEL ═══ -->
+      <div class="panel active" id="panel-projects">
+        <div class="panel-header">
+          <h2 class="panel-title">Projects</h2>
+          <p class="panel-desc">Edit project details, upload screenshots, and update links.</p>
+        </div>
+
+        <div class="project-tabs">
+          <button class="proj-tab active" data-proj="safealert">SafeAlert</button>
+          <button class="proj-tab" data-proj="foxlearn">FOX LEARN</button>
+          <button class="proj-tab" data-proj="budgetpal">BudgetPal</button>
+          <button class="proj-tab" data-proj="studentrecord">Student Record</button>
+        </div>
+
+        <!-- SAFEALERT -->
+        <div class="project-panel active" id="proj-safealert">
+          <form class="proj-form" data-project="safealert">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-info-circle"></i> Basic Info</div>
+              <div class="form-group">
+                <label class="form-label">Project Title</label>
+                <input type="text" class="form-input" name="title" placeholder="Project Title" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category / Subtitle</label>
+                <input type="text" class="form-input" name="category" placeholder="Web App • IoT • ..." />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Overview</label>
+                <textarea class="form-input textarea-lg" name="overview" placeholder="Project overview..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Problem</label>
+                <textarea class="form-input textarea" name="problem" placeholder="What problem does this solve?"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Solution</label>
+                <textarea class="form-input textarea" name="solution" placeholder="How did you solve it?"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Development Process</label>
+                <textarea class="form-input textarea" name="process" placeholder="How was it built?"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Result</label>
+                <textarea class="form-input textarea" name="result" placeholder="What was the outcome?"></textarea>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><i class="fas fa-tags"></i> Technologies</div>
+              <label class="form-label">Tech Stack Tags</label>
+              <div class="tags-editor" id="tags-safealert"></div>
+              <p class="tags-hint">Type a tag and press Enter or comma to add</p>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><i class="fas fa-image"></i> Project Preview Image</div>
+              <div class="img-upload-area" id="upload-area-safealert">
+                <input type="file" accept="image/*" class="img-file-input" data-project="safealert" />
+                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <p class="upload-text">Click or drag & drop to upload screenshot</p>
+                <p class="upload-hint">PNG, JPG, WebP — max 10MB</p>
+              </div>
+              <div class="img-preview" id="preview-safealert">
+                <div class="img-preview-placeholder">No custom image uploaded yet</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><i class="fas fa-link"></i> Links</div>
+              <div class="form-group">
+                <label class="form-label">GitHub URL</label>
+                <input type="url" class="form-input" name="github" placeholder="https://github.com/..." />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Figma URL (if applicable)</label>
+                <input type="url" class="form-input" name="figma" placeholder="https://figma.com/..." />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Live Demo URL (if applicable)</label>
+                <input type="url" class="form-input" name="live" placeholder="https://..." />
+              </div>
+            </div>
+
+            <div class="save-row">
+              <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save SafeAlert</button>
+              <span class="save-status"></span>
+            </div>
+          </form>
+        </div>
+
+        <!-- FOX LEARN -->
+        <div class="project-panel" id="proj-foxlearn">
+          <form class="proj-form" data-project="foxlearn">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-info-circle"></i> Basic Info</div>
+              <div class="form-group"><label class="form-label">Project Title</label><input type="text" class="form-input" name="title" /></div>
+              <div class="form-group"><label class="form-label">Category / Subtitle</label><input type="text" class="form-input" name="category" /></div>
+              <div class="form-group"><label class="form-label">Overview</label><textarea class="form-input textarea-lg" name="overview"></textarea></div>
+              <div class="form-group"><label class="form-label">Problem</label><textarea class="form-input textarea" name="problem"></textarea></div>
+              <div class="form-group"><label class="form-label">Solution</label><textarea class="form-input textarea" name="solution"></textarea></div>
+              <div class="form-group"><label class="form-label">Development Process</label><textarea class="form-input textarea" name="process"></textarea></div>
+              <div class="form-group"><label class="form-label">Result</label><textarea class="form-input textarea" name="result"></textarea></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-tags"></i> Technologies</div>
+              <label class="form-label">Tech Stack Tags</label>
+              <div class="tags-editor" id="tags-foxlearn"></div>
+              <p class="tags-hint">Type a tag and press Enter or comma to add</p>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-image"></i> Project Preview Image</div>
+              <div class="img-upload-area" id="upload-area-foxlearn">
+                <input type="file" accept="image/*" class="img-file-input" data-project="foxlearn" />
+                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <p class="upload-text">Click or drag & drop to upload screenshot</p>
+                <p class="upload-hint">PNG, JPG, WebP — max 10MB</p>
+              </div>
+              <div class="img-preview" id="preview-foxlearn"><div class="img-preview-placeholder">No custom image uploaded yet</div></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-link"></i> Links</div>
+              <div class="form-group"><label class="form-label">GitHub URL</label><input type="url" class="form-input" name="github" /></div>
+              <div class="form-group"><label class="form-label">Figma URL</label><input type="url" class="form-input" name="figma" /></div>
+              <div class="form-group"><label class="form-label">Live Demo URL</label><input type="url" class="form-input" name="live" /></div>
+            </div>
+            <div class="save-row"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save FOX LEARN</button><span class="save-status"></span></div>
+          </form>
+        </div>
+
+        <!-- BUDGETPAL -->
+        <div class="project-panel" id="proj-budgetpal">
+          <form class="proj-form" data-project="budgetpal">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-info-circle"></i> Basic Info</div>
+              <div class="form-group"><label class="form-label">Project Title</label><input type="text" class="form-input" name="title" /></div>
+              <div class="form-group"><label class="form-label">Category / Subtitle</label><input type="text" class="form-input" name="category" /></div>
+              <div class="form-group"><label class="form-label">Overview</label><textarea class="form-input textarea-lg" name="overview"></textarea></div>
+              <div class="form-group"><label class="form-label">Problem</label><textarea class="form-input textarea" name="problem"></textarea></div>
+              <div class="form-group"><label class="form-label">Solution</label><textarea class="form-input textarea" name="solution"></textarea></div>
+              <div class="form-group"><label class="form-label">Development Process</label><textarea class="form-input textarea" name="process"></textarea></div>
+              <div class="form-group"><label class="form-label">Result</label><textarea class="form-input textarea" name="result"></textarea></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-tags"></i> Technologies</div>
+              <label class="form-label">Tech Stack Tags</label>
+              <div class="tags-editor" id="tags-budgetpal"></div>
+              <p class="tags-hint">Type a tag and press Enter or comma to add</p>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-image"></i> Project Preview Image</div>
+              <div class="img-upload-area" id="upload-area-budgetpal">
+                <input type="file" accept="image/*" class="img-file-input" data-project="budgetpal" />
+                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <p class="upload-text">Click or drag & drop to upload screenshot</p>
+                <p class="upload-hint">PNG, JPG, WebP — max 10MB</p>
+              </div>
+              <div class="img-preview" id="preview-budgetpal"><div class="img-preview-placeholder">No custom image uploaded yet</div></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-link"></i> Links</div>
+              <div class="form-group"><label class="form-label">GitHub URL</label><input type="url" class="form-input" name="github" /></div>
+              <div class="form-group"><label class="form-label">Figma URL</label><input type="url" class="form-input" name="figma" /></div>
+              <div class="form-group"><label class="form-label">Live Demo URL</label><input type="url" class="form-input" name="live" /></div>
+            </div>
+            <div class="save-row"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save BudgetPal</button><span class="save-status"></span></div>
+          </form>
+        </div>
+
+        <!-- STUDENT RECORD -->
+        <div class="project-panel" id="proj-studentrecord">
+          <form class="proj-form" data-project="studentrecord">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-info-circle"></i> Basic Info</div>
+              <div class="form-group"><label class="form-label">Project Title</label><input type="text" class="form-input" name="title" /></div>
+              <div class="form-group"><label class="form-label">Category / Subtitle</label><input type="text" class="form-input" name="category" /></div>
+              <div class="form-group"><label class="form-label">Overview</label><textarea class="form-input textarea-lg" name="overview"></textarea></div>
+              <div class="form-group"><label class="form-label">Problem</label><textarea class="form-input textarea" name="problem"></textarea></div>
+              <div class="form-group"><label class="form-label">Solution</label><textarea class="form-input textarea" name="solution"></textarea></div>
+              <div class="form-group"><label class="form-label">Development Process</label><textarea class="form-input textarea" name="process"></textarea></div>
+              <div class="form-group"><label class="form-label">Result</label><textarea class="form-input textarea" name="result"></textarea></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-tags"></i> Technologies</div>
+              <label class="form-label">Tech Stack Tags</label>
+              <div class="tags-editor" id="tags-studentrecord"></div>
+              <p class="tags-hint">Type a tag and press Enter or comma to add</p>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-image"></i> Project Preview Image</div>
+              <div class="img-upload-area" id="upload-area-studentrecord">
+                <input type="file" accept="image/*" class="img-file-input" data-project="studentrecord" />
+                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <p class="upload-text">Click or drag & drop to upload screenshot</p>
+                <p class="upload-hint">PNG, JPG, WebP — max 10MB</p>
+              </div>
+              <div class="img-preview" id="preview-studentrecord"><div class="img-preview-placeholder">No custom image uploaded yet</div></div>
+            </div>
+            <div class="card">
+              <div class="card-title"><i class="fas fa-link"></i> Links</div>
+              <div class="form-group"><label class="form-label">GitHub URL</label><input type="url" class="form-input" name="github" /></div>
+              <div class="form-group"><label class="form-label">Figma URL</label><input type="url" class="form-input" name="figma" /></div>
+              <div class="form-group"><label class="form-label">Live Demo URL</label><input type="url" class="form-input" name="live" /></div>
+            </div>
+            <div class="save-row"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Student Record</button><span class="save-status"></span></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ═══ PROFILE PANEL ═══ -->
+      <div class="panel" id="panel-profile">
+        <div class="panel-header">
+          <h2 class="panel-title">Profile</h2>
+          <p class="panel-desc">Update your hero section and about me content.</p>
+        </div>
+        <form id="form-profile">
+          <div class="card">
+            <div class="card-title"><i class="fas fa-user"></i> Hero Section</div>
+            <div class="form-group"><label class="form-label">Full Name</label><input type="text" class="form-input" id="prof-name" placeholder="Jhon Eric Arbas" /></div>
+            <div class="form-group"><label class="form-label">Role / Title</label><input type="text" class="form-input" id="prof-role" placeholder="Computer Science Student & ..." /></div>
+            <div class="form-group"><label class="form-label">Hero Intro (one line)</label><input type="text" class="form-input" id="prof-intro" placeholder="I build practical digital solutions..." /></div>
+            <div class="form-group"><label class="form-label">Availability Badge Text</label><input type="text" class="form-input" id="prof-badge" placeholder="Available for opportunities" /></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><i class="fas fa-align-left"></i> About Me Paragraphs</div>
+            <div class="form-group"><label class="form-label">Paragraph 1</label><textarea class="form-input textarea-lg" id="prof-about-0" placeholder="First paragraph..."></textarea></div>
+            <div class="form-group"><label class="form-label">Paragraph 2</label><textarea class="form-input textarea-lg" id="prof-about-1" placeholder="Second paragraph..."></textarea></div>
+            <div class="form-group"><label class="form-label">Paragraph 3</label><textarea class="form-input textarea-lg" id="prof-about-2" placeholder="Third paragraph..."></textarea></div>
+          </div>
+          <div class="save-row">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Profile</button>
+            <span class="save-status" id="profile-status"></span>
+          </div>
+        </form>
+      </div>
+
+      <!-- ═══ CONTACT PANEL ═══ -->
+      <div class="panel" id="panel-contact">
+        <div class="panel-header">
+          <h2 class="panel-title">Contact Links</h2>
+          <p class="panel-desc">Update your social links shown in the Contact section and footer.</p>
+        </div>
+        <form id="form-contact">
+          <div class="card">
+            <div class="card-title"><i class="fas fa-address-card"></i> Social Links</div>
+            <div class="form-group">
+              <label class="form-label"><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" class="form-input" id="contact-email" placeholder="your@email.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fab fa-github"></i> GitHub URL</label>
+              <input type="url" class="form-input" id="contact-github" placeholder="https://github.com/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fab fa-linkedin"></i> LinkedIn URL</label>
+              <input type="url" class="form-input" id="contact-linkedin" placeholder="https://linkedin.com/in/..." />
+            </div>
+            <div class="form-group">
+              <label class="form-label"><i class="fab fa-facebook"></i> Facebook URL</label>
+              <input type="url" class="form-input" id="contact-facebook" placeholder="https://facebook.com/..." />
+            </div>
+          </div>
+          <div class="save-row">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Contact</button>
+            <span class="save-status" id="contact-status"></span>
+          </div>
+        </form>
+      </div>
+
+      <!-- ═══ SETTINGS PANEL ═══ -->
+      <div class="panel" id="panel-settings">
+        <div class="panel-header">
+          <h2 class="panel-title">Settings</h2>
+          <p class="panel-desc">Change your admin password and view server info.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fas fa-lock"></i> Change Password</div>
+          <p class="settings-note">
+            ℹ Your password is stored as a bcrypt hash. After changing it, the new password
+            is automatically saved to your <code>.env</code> file.
+          </p>
+          <form id="form-password">
+            <div class="form-group"><label class="form-label">Current Password</label><input type="password" class="form-input" id="pass-current" autocomplete="current-password" /></div>
+            <div class="form-group"><label class="form-label">New Password (min. 6 chars)</label><input type="password" class="form-input" id="pass-new" autocomplete="new-password" /></div>
+            <div class="form-group"><label class="form-label">Confirm New Password</label><input type="password" class="form-input" id="pass-confirm" autocomplete="new-password" /></div>
+            <div class="save-row">
+              <button type="submit" class="btn btn-danger"><i class="fas fa-key"></i> Change Password</button>
+              <span class="save-status" id="pass-status"></span>
+            </div>
+          </form>
+        </div>
+
+        <div class="card">
+          <div class="card-title"><i class="fas fa-server"></i> Server Info</div>
+          <div style="display:grid;gap:10px;font-family:var(--font-mono);font-size:0.8rem;color:var(--text2);">
+            <div><span style="color:var(--text3)">Portfolio URL:</span> <a href="/" target="_blank" style="color:var(--accent)">http://localhost:3000</a></div>
+            <div><span style="color:var(--text3)">Admin URL:</span> <a href="/admin" style="color:var(--accent)">http://localhost:3000/admin</a></div>
+            <div><span style="color:var(--text3)">Data file:</span> <span style="color:var(--text)">data/portfolio.json</span></div>
+            <div><span style="color:var(--text3)">Images:</span> <span style="color:var(--text)">assets/images/</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content-area -->
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

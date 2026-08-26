@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — JEA Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="login-page">
+
+  <div class="login-bg" aria-hidden="true"></div>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">
+          <span class="bracket">[</span>JEA<span class="bracket">]</span>
+        </div>
+        <h1 class="login-title">Admin Panel</h1>
+        <p class="login-sub">Portfolio Content Manager</p>
+      </div>
+
+      <form class="login-form" id="login-form" novalidate>
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrap">
+            <i class="fas fa-lock input-icon" aria-hidden="true"></i>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-input"
+              placeholder="Enter admin password"
+              required
+              autocomplete="current-password"
+              autofocus
+            />
+            <button type="button" class="toggle-pass" id="toggle-pass" aria-label="Toggle password visibility">
+              <i class="fas fa-eye" id="toggle-icon"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login" id="btn-login">
+          <span class="btn-text">
+            <i class="fas fa-sign-in-alt"></i> Login to Admin
+          </span>
+          <span class="btn-loading" hidden>
+            <i class="fas fa-spinner fa-spin"></i> Verifying...
+          </span>
+        </button>
+
+        <div class="login-error" id="login-error" role="alert" hidden></div>
+      </form>
+
+      <div class="login-footer">
+        <a href="/" class="back-link">
+          <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+        <span class="login-note mono">localhost:3000/admin</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Redirect if already logged in
+    const token = localStorage.getItem('admin_token');
+    if (token) {
+      fetch('/api/auth/verify', {
+        headers: { Authorization: `Bearer ${token}` }
+      }).then(r => {
+        if (r.ok) window.location.href = '/admin/dashboard';
+      });
+    }
+
+    const form       = document.getElementById('login-form');
+    const btnLogin   = document.getElementById('btn-login');
+    const btnText    = btnLogin.querySelector('.btn-text');
+    const btnLoading = btnLogin.querySelector('.btn-loading');
+    const errBox     = document.getElementById('login-error');
+    const toggleBtn  = document.getElementById('toggle-pass');
+    const toggleIcon = document.getElementById('toggle-icon');
+    const pwInput    = document.getElementById('password');
+
+    // Toggle password visibility
+    toggleBtn.addEventListener('click', () => {
+      const show = pwInput.type === 'password';
+      pwInput.type = show ? 'text' : 'password';
+      toggleIcon.className = show ? 'fas fa-eye-slash' : 'fas fa-eye';
+    });
+
+    // Form submit
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const password = pwInput.value.trim();
+      if (!password) return;
+
+      btnText.hidden   = true;
+      btnLoading.hidden = false;
+      btnLogin.disabled = true;
+      errBox.hidden    = true;
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.token) {
+          localStorage.setItem('admin_token', data.token);
+          window.location.href = '/admin/dashboard';
+        } else {
+          showError(data.error || 'Login failed. Check your password.');
+        }
+      } catch (err) {
+        showError('Could not connect to server. Make sure node server.js is running.');
+      } finally {
+        btnText.hidden    = false;
+        btnLoading.hidden = true;
+        btnLogin.disabled = false;
+      }
+    });
+
+    function showError(msg) {
+      errBox.textContent = msg;
+      errBox.hidden = false;
+    }
+  </script>
+</body>
+</html>

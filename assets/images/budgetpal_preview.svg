@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D1117"/>
+      <stop offset="100%" style="stop-color:#161B22"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3fb950"/>
+      <stop offset="100%" style="stop-color:#58A6FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  
+  <!-- Grid -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#58A6FF" stroke-width="0.3" opacity="0.1"/>
+  </pattern>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+
+  <!-- Header -->
+  <text x="100" y="75" font-family="JetBrains Mono, monospace" font-size="11" fill="#58A6FF" letter-spacing="2">BudgetPal — Dashboard</text>
+
+  <!-- Main Dashboard Card -->
+  <rect x="80" y="95" width="1040" height="500" rx="16" fill="#161B22" stroke="#21262d" stroke-width="1.5"/>
+
+  <!-- Top summary cards -->
+  <!-- Total Balance -->
+  <rect x="108" y="125" width="220" height="90" rx="10" fill="#0D1117" stroke="#21262d" stroke-width="1"/>
+  <text x="124" y="150" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Total Balance</text>
+  <text x="124" y="185" font-family="JetBrains Mono, monospace" font-size="22" fill="#F0F6FC" font-weight="bold">₱ 45,280</text>
+  <text x="124" y="204" font-family="JetBrains Mono, monospace" font-size="9" fill="#3fb950">↑ +12.4% this month</text>
+
+  <!-- Income -->
+  <rect x="348" y="125" width="220" height="90" rx="10" fill="#0D1117" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="364" y="150" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Monthly Income</text>
+  <text x="364" y="185" font-family="JetBrains Mono, monospace" font-size="22" fill="#3fb950" font-weight="bold">₱ 28,500</text>
+  <circle cx="556" cy="148" r="8" fill="rgba(63,185,80,0.2)" stroke="rgba(63,185,80,0.5)" stroke-width="1"/>
+
+  <!-- Expenses -->
+  <rect x="588" y="125" width="220" height="90" rx="10" fill="#0D1117" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+  <text x="604" y="150" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Monthly Expenses</text>
+  <text x="604" y="185" font-family="JetBrains Mono, monospace" font-size="22" fill="#f85149" font-weight="bold">₱ 14,320</text>
+  <circle cx="796" cy="148" r="8" fill="rgba(248,81,73,0.2)" stroke="rgba(248,81,73,0.5)" stroke-width="1"/>
+
+  <!-- Savings -->
+  <rect x="828" y="125" width="264" height="90" rx="10" fill="#0D1117" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+  <text x="844" y="150" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Savings Goal</text>
+  <text x="844" y="180" font-family="JetBrains Mono, monospace" font-size="20" fill="#58A6FF" font-weight="bold">₱ 5,000</text>
+  <rect x="844" y="190" width="200" height="8" rx="4" fill="#21262d"/>
+  <rect x="844" y="190" width="148" height="8" rx="4" fill="url(#green)"/>
+  <text x="1054" y="199" font-family="JetBrains Mono, monospace" font-size="8" fill="#58A6FF">74%</text>
+
+  <!-- Spending chart -->
+  <rect x="108" y="235" width="440" height="240" rx="10" fill="#0D1117" stroke="#21262d" stroke-width="1"/>
+  <text x="124" y="260" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">// Spending Breakdown</text>
+
+  <!-- Donut chart representation -->
+  <!-- Food 35% -->
+  <circle cx="250" cy="360" r="70" fill="none" stroke="#FF8C32" stroke-width="22" stroke-dasharray="154 286" stroke-dashoffset="0"/>
+  <!-- Housing 28% -->
+  <circle cx="250" cy="360" r="70" fill="none" stroke="#58A6FF" stroke-width="22" stroke-dasharray="123 317" stroke-dashoffset="-154"/>
+  <!-- Transport 18% -->
+  <circle cx="250" cy="360" r="70" fill="none" stroke="#A371F7" stroke-width="22" stroke-dasharray="79 361" stroke-dashoffset="-277"/>
+  <!-- Others 19% -->
+  <circle cx="250" cy="360" r="70" fill="none" stroke="#3fb950" stroke-width="22" stroke-dasharray="83 357" stroke-dashoffset="-356"/>
+
+  <text x="250" y="354" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B949E">Total</text>
+  <text x="250" y="372" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#F0F6FC" font-weight="bold">₱14,320</text>
+
+  <!-- Legend -->
+  <rect x="360" y="310" width="10" height="10" rx="2" fill="#FF8C32"/>
+  <text x="376" y="320" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B949E">Food (35%)</text>
+  <rect x="360" y="330" width="10" height="10" rx="2" fill="#58A6FF"/>
+  <text x="376" y="340" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B949E">Housing (28%)</text>
+  <rect x="360" y="350" width="10" height="10" rx="2" fill="#A371F7"/>
+  <text x="376" y="360" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B949E">Transport (18%)</text>
+  <rect x="360" y="370" width="10" height="10" rx="2" fill="#3fb950"/>
+  <text x="376" y="380" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B949E">Others (19%)</text>
+
+  <!-- Transaction History -->
+  <rect x="568" y="235" width="524" height="240" rx="10" fill="#0D1117" stroke="#21262d" stroke-width="1"/>
+  <text x="584" y="260" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">// Recent Transactions</text>
+  
+  <!-- Transactions -->
+  <line x1="584" y1="272" x2="1076" y2="272" stroke="#21262d" stroke-width="1"/>
+  
+  <!-- Row 1 -->
+  <circle cx="600" cy="292" r="8" fill="rgba(248,81,73,0.15)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+  <text x="600" y="296" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f85149">−</text>
+  <text x="620" y="295" font-family="JetBrains Mono, monospace" font-size="9" fill="#F0F6FC">Grocery Store</text>
+  <text x="620" y="308" font-family="JetBrains Mono, monospace" font-size="8" fill="#8B949E">Aug 24, 2025 · Food</text>
+  <text x="1068" y="295" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#f85149">−₱ 1,240</text>
+  
+  <line x1="584" y1="318" x2="1076" y2="318" stroke="#21262d" stroke-width="0.5"/>
+  
+  <!-- Row 2 -->
+  <circle cx="600" cy="338" r="8" fill="rgba(63,185,80,0.15)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <text x="600" y="342" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#3fb950">+</text>
+  <text x="620" y="341" font-family="JetBrains Mono, monospace" font-size="9" fill="#F0F6FC">Salary Deposit</text>
+  <text x="620" y="354" font-family="JetBrains Mono, monospace" font-size="8" fill="#8B949E">Aug 25, 2025 · Income</text>
+  <text x="1068" y="341" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#3fb950">+₱ 28,500</text>
+  
+  <line x1="584" y1="364" x2="1076" y2="364" stroke="#21262d" stroke-width="0.5"/>
+  
+  <!-- Row 3 -->
+  <circle cx="600" cy="384" r="8" fill="rgba(248,81,73,0.15)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+  <text x="600" y="388" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f85149">−</text>
+  <text x="620" y="387" font-family="JetBrains Mono, monospace" font-size="9" fill="#F0F6FC">Electric Bill</text>
+  <text x="620" y="400" font-family="JetBrains Mono, monospace" font-size="8" fill="#8B949E">Aug 26, 2025 · Utilities</text>
+  <text x="1068" y="387" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#f85149">−₱ 2,800</text>
+
+  <line x1="584" y1="410" x2="1076" y2="410" stroke="#21262d" stroke-width="0.5"/>
+  
+  <!-- Row 4 -->
+  <circle cx="600" cy="430" r="8" fill="rgba(248,81,73,0.15)" stroke="rgba(248,81,73,0.3)" stroke-width="1"/>
+  <text x="600" y="434" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" fill="#f85149">−</text>
+  <text x="620" y="433" font-family="JetBrains Mono, monospace" font-size="9" fill="#F0F6FC">Transport — Grab</text>
+  <text x="620" y="446" font-family="JetBrains Mono, monospace" font-size="8" fill="#8B949E">Aug 26, 2025 · Transport</text>
+  <text x="1068" y="433" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#f85149">−₱ 350</text>
+
+  <!-- Bottom label -->
+  <text x="600" y="650" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#30363d">BudgetPal — Personal Finance Web Application</text>
+</svg>

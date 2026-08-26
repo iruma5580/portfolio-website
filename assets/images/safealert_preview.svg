@@ -1,0 +1,108 @@
+<!-- SVG Placeholder: SafeAlert -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0D1117"/>
+      <stop offset="100%" style="stop-color:#161B22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#58A6FF"/>
+      <stop offset="100%" style="stop-color:#3fb950"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  
+  <!-- Grid -->
+  <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+    <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#58A6FF" stroke-width="0.4" opacity="0.15"/>
+  </pattern>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  
+  <!-- Left panel - IoT Device -->
+  <rect x="80" y="100" width="320" height="480" rx="16" fill="#161B22" stroke="#21262d" stroke-width="1.5"/>
+  <text x="240" y="145" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#58A6FF" letter-spacing="2">// IoT DEVICE</text>
+  
+  <!-- ESP32 chip visual -->
+  <rect x="160" y="170" width="160" height="100" rx="8" fill="#0D1117" stroke="#30363d" stroke-width="1.5"/>
+  <text x="240" y="215" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" fill="#58A6FF" font-weight="bold">ESP32</text>
+  <text x="240" y="235" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#8B949E">Microcontroller</text>
+  
+  <!-- Sensor labels -->
+  <rect x="120" y="300" width="100" height="32" rx="6" fill="rgba(88,166,255,0.1)" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+  <text x="170" y="321" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Accelerometer</text>
+  
+  <rect x="240" y="300" width="80" height="32" rx="6" fill="rgba(88,166,255,0.1)" stroke="rgba(88,166,255,0.3)" stroke-width="1"/>
+  <text x="280" y="321" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">Gyroscope</text>
+  
+  <!-- Status -->
+  <circle cx="120" cy="420" r="6" fill="#3fb950"/>
+  <text x="135" y="425" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">Device Online</text>
+  
+  <!-- Right panel - Dashboard -->
+  <rect x="440" y="60" width="680" height="560" rx="16" fill="#161B22" stroke="#21262d" stroke-width="1.5"/>
+  
+  <!-- Dashboard header -->
+  <rect x="440" y="60" width="680" height="52" rx="16" fill="#1c2330" stroke="#21262d" stroke-width="1.5"/>
+  <circle cx="472" cy="86" r="6" fill="#ff5f57"/>
+  <circle cx="492" cy="86" r="6" fill="#febc2e"/>
+  <circle cx="512" cy="86" r="6" fill="#28c840"/>
+  <text x="660" y="91" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">SafeAlert — Emergency Dashboard</text>
+  
+  <!-- Alert card - RED -->
+  <rect x="464" y="132" width="300" height="80" rx="10" fill="rgba(248,81,73,0.1)" stroke="rgba(248,81,73,0.4)" stroke-width="1.5"/>
+  <circle cx="488" cy="155" r="8" fill="#f85149"/>
+  <text x="510" y="151" font-family="JetBrains Mono, monospace" font-size="12" fill="#f85149" font-weight="bold">FALL DETECTED</text>
+  <text x="488" y="170" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Patient: Room 204 — 14:32:07</text>
+  <text x="488" y="188" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Impact Force: 2.8g — Emergency Alert Sent</text>
+  
+  <!-- Alert card - RESOLVED -->
+  <rect x="464" y="228" width="300" height="80" rx="10" fill="rgba(63,185,80,0.08)" stroke="rgba(63,185,80,0.3)" stroke-width="1"/>
+  <circle cx="488" cy="251" r="8" fill="#3fb950"/>
+  <text x="510" y="247" font-family="JetBrains Mono, monospace" font-size="12" fill="#3fb950">Resolved</text>
+  <text x="488" y="266" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Patient: Room 101 — 13:18:44</text>
+  <text x="488" y="284" font-family="JetBrains Mono, monospace" font-size="10" fill="#8B949E">Response time: 45s — Status: OK</text>
+  
+  <!-- Chart area -->
+  <rect x="464" y="328" width="300" height="140" rx="10" fill="#0D1117" stroke="#21262d" stroke-width="1"/>
+  <text x="480" y="352" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">// Alert History (7 days)</text>
+  
+  <!-- Chart bars -->
+  <rect x="490" y="410" width="28" height="45" rx="3" fill="rgba(88,166,255,0.6)"/>
+  <rect x="528" y="395" width="28" height="60" rx="3" fill="rgba(88,166,255,0.6)"/>
+  <rect x="566" y="420" width="28" height="35" rx="3" fill="rgba(88,166,255,0.6)"/>
+  <rect x="604" y="400" width="28" height="55" rx="3" fill="rgba(248,81,73,0.7)"/>
+  <rect x="642" y="415" width="28" height="40" rx="3" fill="rgba(88,166,255,0.6)"/>
+  <rect x="680" y="430" width="28" height="25" rx="3" fill="rgba(88,166,255,0.6)"/>
+  <rect x="718" y="408" width="28" height="47" rx="3" fill="rgba(88,166,255,0.6)"/>
+  
+  <!-- Right side stats -->
+  <rect x="792" y="132" width="300" height="336" rx="10" fill="#0D1117" stroke="#21262d" stroke-width="1"/>
+  <text x="808" y="158" font-family="JetBrains Mono, monospace" font-size="10" fill="#58A6FF">// System Status</text>
+  
+  <text x="808" y="190" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">Active Devices</text>
+  <text x="1072" y="190" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="18" fill="#58A6FF" font-weight="bold">12</text>
+  
+  <line x1="808" y1="202" x2="1072" y2="202" stroke="#21262d" stroke-width="1"/>
+  
+  <text x="808" y="228" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">Alerts Today</text>
+  <text x="1072" y="228" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="18" fill="#f85149" font-weight="bold">3</text>
+  
+  <line x1="808" y1="240" x2="1072" y2="240" stroke="#21262d" stroke-width="1"/>
+  
+  <text x="808" y="266" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">Response Rate</text>
+  <text x="1072" y="266" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="18" fill="#3fb950" font-weight="bold">98%</text>
+  
+  <line x1="808" y1="278" x2="1072" y2="278" stroke="#21262d" stroke-width="1"/>
+  
+  <text x="808" y="310" font-family="JetBrains Mono, monospace" font-size="11" fill="#8B949E">Avg Response</text>
+  <text x="1072" y="310" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="18" fill="#58A6FF" font-weight="bold">38s</text>
+  
+  <!-- Bottom title -->
+  <text x="600" y="655" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#30363d">SafeAlert — IoT Emergency Response System</text>
+</svg>

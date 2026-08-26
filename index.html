@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jhon Eric Arbas — CS Student & Software Developer</title>
+  <meta name="description" content="Portfolio of Jhon Eric Arbas, Computer Science Student and Aspiring Software Developer specializing in Software Development, IoT, UI/UX Design, and Web Development." />
+  <meta name="keywords" content="Jhon Eric Arbas, Computer Science, Software Developer, IoT, UI/UX Design, Web Development, Portfolio" />
+  <meta name="author" content="Jhon Eric Arbas" />
+  <meta property="og:title" content="Jhon Eric Arbas — CS Student & Software Developer" />
+  <meta property="og:description" content="Portfolio of Jhon Eric Arbas — CS Student building practical digital solutions through software development, IoT, UI/UX, and modern technology." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/previews.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══ NAVIGATION ═══ -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">JEA</span>
+        <span class="logo-bracket">]</span>
+      </a>
+
+      <ul class="nav-links" id="nav-links" role="menubar">
+        <li role="none"><a href="#home" class="nav-link active" role="menuitem">Home</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+        <li role="none"><a href="#skills" class="nav-link" role="menuitem">Skills</a></li>
+        <li role="none"><a href="#projects" class="nav-link" role="menuitem">Projects</a></li>
+        <li role="none"><a href="#experience" class="nav-link" role="menuitem">Experience</a></li>
+        <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero" id="home" aria-label="Hero section">
+    <div class="hero-grid-bg" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-badge" aria-label="Status indicator">
+          <span class="badge-dot" aria-hidden="true"></span>
+          <span class="badge-text">Available for opportunities</span>
+        </div>
+
+        <h1 class="hero-name">
+          <span class="name-line">Jhon Eric</span>
+          <span class="name-line name-accent">Arbas</span>
+        </h1>
+
+        <p class="hero-role">
+          <span class="role-tag">&lt;</span>
+          Computer Science Student &amp; Aspiring Software Developer
+          <span class="role-tag">/&gt;</span>
+        </p>
+
+        <p class="hero-intro">
+          I build practical digital solutions through software development,
+          IoT, UI/UX, and modern technology.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary" id="hero-view-projects">
+            <i class="fas fa-code-branch" aria-hidden="true"></i>
+            View My Projects
+          </a>
+          <a href="#contact" class="btn btn-secondary" id="hero-contact">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            Contact Me
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">4+</span>
+            <span class="stat-label">Projects</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Skill Areas</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">CS</span>
+            <span class="stat-label">Student</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-terminal" aria-label="Terminal display">
+        <div class="terminal-header">
+          <div class="terminal-dots" aria-hidden="true">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">bash — portfolio.sh</span>
+        </div>
+        <div class="terminal-body">
+          <div class="terminal-line">
+            <span class="t-prompt">~/portfolio</span>
+            <span class="t-sym">$</span>
+            <span class="t-cmd" id="t-cmd-1">whoami</span>
+          </div>
+          <div class="terminal-output" id="t-out-1">Jhon Eric Arbas</div>
+
+          <div class="terminal-line t-delayed">
+            <span class="t-prompt">~/portfolio</span>
+            <span class="t-sym">$</span>
+            <span class="t-cmd" id="t-cmd-2">cat focus.txt</span>
+          </div>
+          <div class="terminal-output t-delayed-out" id="t-out-2">
+            Software Development • IoT<br/>
+            UI/UX Design • Web Development
+          </div>
+
+          <div class="terminal-line t-delayed2">
+            <span class="t-prompt">~/portfolio</span>
+            <span class="t-sym">$</span>
+            <span class="t-cmd" id="t-cmd-3">status --current</span>
+          </div>
+          <div class="terminal-output t-delayed2-out" id="t-out-3">
+            <span class="t-green">✓</span> Building real-world projects<br/>
+            <span class="t-green">✓</span> Open to internships &amp; collaboration<br/>
+            <span class="t-cursor" aria-hidden="true">█</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span class="scroll-text">scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="section about-section" id="about" aria-label="About me">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">// 01</span>
+        <h2 class="section-title">About Me</h2>
+        <p class="section-sub">A CS student building at the intersection of software and hardware</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p class="about-para">
+            Hi, I'm <strong>Jhon Eric Arbas</strong> — a Computer Science student with a passion
+            for building practical, real-world technology solutions. I enjoy the full spectrum of
+            development, from designing clean user interfaces to integrating hardware systems through IoT.
+          </p>
+          <p class="about-para">
+            My work spans across <strong>software development</strong>, <strong>web applications</strong>,
+            <strong>IoT systems</strong>, and <strong>UI/UX design</strong> — disciplines I treat as
+            complementary rather than isolated. I believe the best products are ones that are both
+            technically sound and genuinely pleasant to use.
+          </p>
+          <p class="about-para">
+            Whether it's a fall-detection wearable connected to an emergency web dashboard,
+            or a polished e-learning mobile app crafted in Figma — I'm driven by building things
+            that actually solve problems.
+          </p>
+
+          <div class="about-links">
+            <a href="#projects" class="btn btn-primary btn-sm">See My Work</a>
+            <a href="#contact" class="btn btn-ghost btn-sm">Get In Touch</a>
+          </div>
+        </div>
+
+        <div class="about-cards reveal">
+          <div class="about-card" id="about-card-cs">
+            <div class="about-card-icon">
+              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+            </div>
+            <div class="about-card-info">
+              <h3>Computer Science</h3>
+              <p>CS fundamentals, algorithms, data structures, systems design</p>
+            </div>
+          </div>
+          <div class="about-card" id="about-card-sw">
+            <div class="about-card-icon">
+              <i class="fas fa-code" aria-hidden="true"></i>
+            </div>
+            <div class="about-card-info">
+              <h3>Software Development</h3>
+              <p>Desktop, web &amp; application development with clean, maintainable code</p>
+            </div>
+          </div>
+          <div class="about-card" id="about-card-iot">
+            <div class="about-card-icon">
+              <i class="fas fa-microchip" aria-hidden="true"></i>
+            </div>
+            <div class="about-card-info">
+              <h3>IoT &amp; Hardware</h3>
+              <p>ESP32, sensors, real-time data, and hardware-software integration</p>
+            </div>
+          </div>
+          <div class="about-card" id="about-card-ux">
+            <div class="about-card-icon">
+              <i class="fas fa-layer-group" aria-hidden="true"></i>
+            </div>
+            <div class="about-card-info">
+              <h3>UI/UX Design</h3>
+              <p>User-centered design, Figma prototyping, and mobile app UI</p>
+            </div>
+          </div>
+          <div class="about-card" id="about-card-web">
+            <div class="about-card-icon">
+              <i class="fas fa-globe" aria-hidden="true"></i>
+            </div>
+            <div class="about-card-info">
+              <h3>Web Development</h3>
+              <p>Responsive web applications and database-driven systems</p>
+            </div>
+          </div>
+          <div class="about-card" id="about-card-mob">
+            <div class="about-card-icon">
+              <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+            </div>
+            <div class="about-card-info">
+              <h3>Mobile Applications</h3>
+              <p>Android development and mobile-first design principles</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section class="section skills-section" id="skills" aria-label="Technical skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">// 02</span>
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-sub">Technologies and tools I work with</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Programming -->
+        <div class="skill-category reveal" id="skill-cat-programming">
+          <div class="skill-cat-header">
+            <i class="fas fa-terminal" aria-hidden="true"></i>
+            <h3>Programming</h3>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-badge" data-level="advanced">JavaScript</span>
+            <span class="skill-badge" data-level="advanced">HTML</span>
+            <span class="skill-badge" data-level="advanced">CSS</span>
+            <span class="skill-badge" data-level="intermediate">Visual Basic .NET</span>
+          </div>
+        </div>
+
+        <!-- Web & Software -->
+        <div class="skill-category reveal" id="skill-cat-web">
+          <div class="skill-cat-header">
+            <i class="fas fa-laptop-code" aria-hidden="true"></i>
+            <h3>Web &amp; Software</h3>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-badge" data-level="advanced">Web Development</span>
+            <span class="skill-badge" data-level="intermediate">WinForms</span>
+            <span class="skill-badge" data-level="intermediate">Database Development</span>
+            <span class="skill-badge" data-level="intermediate">Android Development</span>
+          </div>
+        </div>
+
+        <!-- IoT & Hardware -->
+        <div class="skill-category reveal" id="skill-cat-iot">
+          <div class="skill-cat-header">
+            <i class="fas fa-microchip" aria-hidden="true"></i>
+            <h3>IoT &amp; Hardware</h3>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-badge badge-purple" data-level="intermediate">ESP32</span>
+            <span class="skill-badge badge-purple" data-level="intermediate">Sensors</span>
+            <span class="skill-badge badge-purple" data-level="intermediate">IoT Integration</span>
+            <span class="skill-badge badge-purple" data-level="intermediate">Fall Detection</span>
+          </div>
+        </div>
+
+        <!-- UI/UX Design -->
+        <div class="skill-category reveal" id="skill-cat-uiux">
+          <div class="skill-cat-header">
+            <i class="fas fa-pen-ruler" aria-hidden="true"></i>
+            <h3>UI/UX Design</h3>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-badge badge-mixed" data-level="advanced">Figma</span>
+            <span class="skill-badge badge-mixed" data-level="advanced">UI Design</span>
+            <span class="skill-badge badge-mixed" data-level="advanced">UX Design</span>
+            <span class="skill-badge badge-mixed" data-level="intermediate">Wireframing</span>
+            <span class="skill-badge badge-mixed" data-level="intermediate">Prototyping</span>
+            <span class="skill-badge badge-mixed" data-level="intermediate">Mobile App Design</span>
+          </div>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-category reveal" id="skill-cat-tools">
+          <div class="skill-cat-header">
+            <i class="fas fa-wrench" aria-hidden="true"></i>
+            <h3>Tools</h3>
+          </div>
+          <div class="skill-badges">
+            <span class="skill-badge badge-tool">Git</span>
+            <span class="skill-badge badge-tool">GitHub</span>
+            <span class="skill-badge badge-tool">VS Code</span>
+            <span class="skill-badge badge-tool">Android Studio</span>
+            <span class="skill-badge badge-tool">Figma</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <section class="section projects-section" id="projects" aria-label="Featured projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">// 03</span>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-sub">Real-world solutions I've designed and built</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- PROJECT 01: SafeAlert -->
+        <article class="project-card project-card--featured reveal" id="project-safealert" tabindex="0" role="button" aria-label="View SafeAlert project details">
+          <div class="project-img-wrap">
+            <img src="assets/images/safealert_preview.svg" alt="SafeAlert IoT fall detection and emergency response system dashboard" class="project-img" loading="lazy" />
+            <div class="project-img-overlay" aria-hidden="true"></div>
+            <div class="project-number" aria-hidden="true">01</div>
+            <div class="project-category-badge">
+              <i class="fas fa-microchip" aria-hidden="true"></i> IoT · Web · Emergency
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">SafeAlert</h3>
+            <p class="project-category">Web Application • IoT • Emergency Response System</p>
+            <p class="project-desc">
+              An IoT-based wearable fall detection and emergency response system with a web application
+              for monitoring alerts and emergency information.
+            </p>
+            <div class="project-tags">
+              <span class="tag">ESP32</span>
+              <span class="tag">IoT</span>
+              <span class="tag">Sensors</span>
+              <span class="tag">Web Dev</span>
+              <span class="tag">Database</span>
+              <span class="tag">Android</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-primary btn-sm project-detail-btn" data-project="safealert" aria-label="View SafeAlert case study">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i> View Project
+              </button>
+              <a href="#" class="btn btn-ghost btn-sm" aria-label="SafeAlert on GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 02: FOX LEARN -->
+        <article class="project-card reveal" id="project-foxlearn" tabindex="0" role="button" aria-label="View FOX LEARN project details">
+          <div class="project-img-wrap">
+            <img src="assets/images/foxlearn_preview.svg" alt="FOX LEARN e-learning mobile app UI/UX design" class="project-img" loading="lazy" />
+            <div class="project-img-overlay" aria-hidden="true"></div>
+            <div class="project-number" aria-hidden="true">02</div>
+            <div class="project-category-badge">
+              <i class="fas fa-pen-ruler" aria-hidden="true"></i> UI/UX · Mobile
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">FOX LEARN</h3>
+            <p class="project-category">UI/UX Design • E-Learning Mobile Application</p>
+            <p class="project-desc">
+              An e-learning mobile application designed in Figma with a clean, friendly, and
+              user-focused interface for online learning.
+            </p>
+            <div class="project-tags">
+              <span class="tag tag-purple">Figma</span>
+              <span class="tag tag-purple">UI/UX Design</span>
+              <span class="tag tag-purple">Mobile App</span>
+              <span class="tag tag-purple">Prototyping</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-primary btn-sm project-detail-btn" data-project="foxlearn" aria-label="View FOX LEARN case study">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i> View Project
+              </button>
+              <a href="#" class="btn btn-ghost btn-sm" aria-label="FOX LEARN on Figma">
+                <i class="fab fa-figma" aria-hidden="true"></i> Figma
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 03: BudgetPal -->
+        <article class="project-card reveal" id="project-budgetpal" tabindex="0" role="button" aria-label="View BudgetPal project details">
+          <div class="project-img-wrap">
+            <img src="assets/images/budgetpal_preview.svg" alt="BudgetPal personal finance web application dashboard" class="project-img" loading="lazy" />
+            <div class="project-img-overlay" aria-hidden="true"></div>
+            <div class="project-number" aria-hidden="true">03</div>
+            <div class="project-category-badge">
+              <i class="fas fa-wallet" aria-hidden="true"></i> Web · Finance
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">BudgetPal</h3>
+            <p class="project-category">Web Application • UI/UX • Database</p>
+            <p class="project-desc">
+              A personal budgeting and transaction management application designed to help users
+              manage their finances through a simple and intuitive interface.
+            </p>
+            <div class="project-tags">
+              <span class="tag">Web</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">Database</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-primary btn-sm project-detail-btn" data-project="budgetpal" aria-label="View BudgetPal case study">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i> View Project
+              </button>
+              <a href="#" class="btn btn-ghost btn-sm" aria-label="BudgetPal on GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- PROJECT 04: Student Record System -->
+        <article class="project-card reveal" id="project-studentrecord" tabindex="0" role="button" aria-label="View Student Record System project details">
+          <div class="project-img-wrap">
+            <img src="assets/images/studentrecord_preview.svg" alt="Student Record System desktop application" class="project-img" loading="lazy" />
+            <div class="project-img-overlay" aria-hidden="true"></div>
+            <div class="project-number" aria-hidden="true">04</div>
+            <div class="project-category-badge">
+              <i class="fas fa-desktop" aria-hidden="true"></i> Desktop · Database
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Student Record System</h3>
+            <p class="project-category">Desktop Application • Database</p>
+            <p class="project-desc">
+              A desktop-based student record management system designed to efficiently manage
+              student information with a clean and functional interface.
+            </p>
+            <div class="project-tags">
+              <span class="tag">VB.NET</span>
+              <span class="tag">WinForms</span>
+              <span class="tag">Database</span>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-primary btn-sm project-detail-btn" data-project="studentrecord" aria-label="View Student Record System case study">
+                <i class="fas fa-arrow-right" aria-hidden="true"></i> View Project
+              </button>
+              <a href="#" class="btn btn-ghost btn-sm" aria-label="Student Record System on GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EXPERIENCE / EDUCATION ═══ -->
+  <section class="section experience-section" id="experience" aria-label="Experience and education">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">// 04</span>
+        <h2 class="section-title">Experience &amp; Education</h2>
+        <p class="section-sub">My academic journey and key milestones</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal" id="exp-cs">
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="marker-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-year">2021 — Present</span>
+              <span class="timeline-type edu">Education</span>
+            </div>
+            <h3 class="timeline-title">Bachelor of Science in Computer Science</h3>
+            <p class="timeline-org">University / College</p>
+            <p class="timeline-desc">
+              Pursuing a BS in Computer Science with focus on software engineering, systems design,
+              database management, algorithms, and practical application development.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">CS Fundamentals</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Systems Design</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" id="exp-thesis">
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="marker-dot marker-dot--accent"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-year">2024 — 2025</span>
+              <span class="timeline-type capstone">Thesis / Capstone</span>
+            </div>
+            <h3 class="timeline-title">SafeAlert — IoT Emergency Response System</h3>
+            <p class="timeline-org">Capstone / Thesis Project</p>
+            <p class="timeline-desc">
+              Designed and developed an IoT-based wearable fall detection and emergency response
+              system integrating ESP32, sensors, a web application dashboard, and Android
+              mobile notifications.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">ESP32</span>
+              <span class="tag">IoT</span>
+              <span class="tag">Web App</span>
+              <span class="tag">Android</span>
+              <span class="tag">Database</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" id="exp-projects">
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="marker-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-year">2023 — 2024</span>
+              <span class="timeline-type project">Software Projects</span>
+            </div>
+            <h3 class="timeline-title">Software Development Projects</h3>
+            <p class="timeline-org">Academic &amp; Personal Projects</p>
+            <p class="timeline-desc">
+              Built BudgetPal (personal finance web app) and Student Record System (VB.NET desktop
+              application) as applied software development exercises covering the full development lifecycle.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Web Dev</span>
+              <span class="tag">VB.NET</span>
+              <span class="tag">WinForms</span>
+              <span class="tag">Database</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" id="exp-uiux">
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="marker-dot marker-dot--purple"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-year">2023 — 2024</span>
+              <span class="timeline-type design">UI/UX Projects</span>
+            </div>
+            <h3 class="timeline-title">FOX LEARN — E-Learning App Design</h3>
+            <p class="timeline-org">UI/UX Design Project</p>
+            <p class="timeline-desc">
+              Designed a complete e-learning mobile application in Figma with comprehensive
+              user flows, wireframes, UI components, and interactive prototypes focused on
+              learner experience.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">UI Design</span>
+              <span class="tag">UX Design</span>
+              <span class="tag">Prototyping</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" id="exp-cert">
+          <div class="timeline-marker" aria-hidden="true">
+            <div class="marker-dot"></div>
+          </div>
+          <div class="timeline-content">
+            <div class="timeline-meta">
+              <span class="timeline-year">Ongoing</span>
+              <span class="timeline-type cert">Certifications</span>
+            </div>
+            <h3 class="timeline-title">Technical Certifications &amp; Training</h3>
+            <p class="timeline-org">Online Platforms &amp; Institutions</p>
+            <p class="timeline-desc">
+              Continuously pursuing certifications and training in web development, software engineering,
+              UI/UX design, and emerging technologies to complement academic study.
+            </p>
+            <div class="timeline-tags">
+              <span class="tag">Web Dev</span>
+              <span class="tag">Software Engineering</span>
+              <span class="tag">UI/UX</span>
+              <span class="tag">IoT</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CURRENTLY EXPLORING ═══ -->
+  <section class="section exploring-section" id="exploring" aria-label="Currently exploring">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">// 05</span>
+        <h2 class="section-title">Currently Exploring</h2>
+        <p class="section-sub">Technologies and fields I'm actively learning</p>
+      </div>
+
+      <div class="exploring-grid">
+        <div class="explore-card reveal" id="explore-ai">
+          <div class="explore-icon">
+            <i class="fas fa-brain" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">Artificial Intelligence</h3>
+          <p class="explore-desc">Machine learning concepts, AI integration in practical applications</p>
+          <div class="explore-status">
+            <span class="status-dot active" aria-hidden="true"></span>
+            <span class="status-mono">learning</span>
+          </div>
+        </div>
+
+        <div class="explore-card reveal" id="explore-iot">
+          <div class="explore-icon explore-icon--purple">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">Internet of Things</h3>
+          <p class="explore-desc">Advanced IoT systems, protocols, and edge computing</p>
+          <div class="explore-status">
+            <span class="status-dot active" aria-hidden="true"></span>
+            <span class="status-mono">active</span>
+          </div>
+        </div>
+
+        <div class="explore-card reveal" id="explore-se">
+          <div class="explore-icon">
+            <i class="fas fa-project-diagram" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">Software Engineering</h3>
+          <p class="explore-desc">Design patterns, software architecture, best practices</p>
+          <div class="explore-status">
+            <span class="status-dot active" aria-hidden="true"></span>
+            <span class="status-mono">studying</span>
+          </div>
+        </div>
+
+        <div class="explore-card reveal" id="explore-web">
+          <div class="explore-icon">
+            <i class="fas fa-code" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">Web Development</h3>
+          <p class="explore-desc">Modern frameworks, full-stack development, APIs</p>
+          <div class="explore-status">
+            <span class="status-dot active" aria-hidden="true"></span>
+            <span class="status-mono">building</span>
+          </div>
+        </div>
+
+        <div class="explore-card reveal" id="explore-mobile">
+          <div class="explore-icon explore-icon--purple">
+            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">Mobile Development</h3>
+          <p class="explore-desc">Android development, cross-platform solutions</p>
+          <div class="explore-status">
+            <span class="status-dot active" aria-hidden="true"></span>
+            <span class="status-mono">learning</span>
+          </div>
+        </div>
+
+        <div class="explore-card reveal" id="explore-uiux">
+          <div class="explore-icon">
+            <i class="fas fa-pen-ruler" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">UI/UX Design</h3>
+          <p class="explore-desc">Advanced Figma, design systems, accessibility</p>
+          <div class="explore-status">
+            <span class="status-dot active" aria-hidden="true"></span>
+            <span class="status-mono">designing</span>
+          </div>
+        </div>
+
+        <div class="explore-card reveal" id="explore-cyber">
+          <div class="explore-icon explore-icon--purple">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+          </div>
+          <h3 class="explore-title">Cybersecurity</h3>
+          <p class="explore-desc">Security principles, secure coding practices, threat models</p>
+          <div class="explore-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="status-mono">exploring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="section contact-section" id="contact" aria-label="Contact section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">// 06</span>
+        <h2 class="section-title">Let's Build Something.</h2>
+        <p class="section-sub">Have a project, opportunity, or idea? Let's connect.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info reveal">
+          <div class="contact-links">
+            <a href="mailto:jhonericarbas@email.com" class="contact-link" id="contact-email" aria-label="Send email">
+              <div class="contact-link-icon">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </div>
+              <div class="contact-link-info">
+                <span class="contact-link-label">Email</span>
+                <span class="contact-link-val">jhonericarbas@email.com</span>
+              </div>
+              <i class="fas fa-arrow-up-right-from-square contact-link-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-link" id="contact-github" aria-label="Visit GitHub profile">
+              <div class="contact-link-icon">
+                <i class="fab fa-github" aria-hidden="true"></i>
+              </div>
+              <div class="contact-link-info">
+                <span class="contact-link-label">GitHub</span>
+                <span class="contact-link-val">github.com/jhonericarbas</span>
+              </div>
+              <i class="fas fa-arrow-up-right-from-square contact-link-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-link" id="contact-linkedin" aria-label="Visit LinkedIn profile">
+              <div class="contact-link-icon">
+                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+              </div>
+              <div class="contact-link-info">
+                <span class="contact-link-label">LinkedIn</span>
+                <span class="contact-link-val">linkedin.com/in/jhonericarbas</span>
+              </div>
+              <i class="fas fa-arrow-up-right-from-square contact-link-arrow" aria-hidden="true"></i>
+            </a>
+
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact-link" id="contact-facebook" aria-label="Visit Facebook profile">
+              <div class="contact-link-icon">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </div>
+              <div class="contact-link-info">
+                <span class="contact-link-label">Facebook</span>
+                <span class="contact-link-val">facebook.com/jhonericarbas</span>
+              </div>
+              <i class="fas fa-arrow-up-right-from-square contact-link-arrow" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrap reveal">
+          <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-group">
+              <label for="form-name" class="form-label">Name</label>
+              <input type="text" id="form-name" name="name" class="form-input" placeholder="Your full name" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="form-email" class="form-label">Email</label>
+              <input type="email" id="form-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="form-message" class="form-label">Message</label>
+              <textarea id="form-message" name="message" class="form-input form-textarea" placeholder="Tell me about your project or opportunity..." required rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="form-submit">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+              Send Message
+            </button>
+            <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <span class="footer-logo">
+            <span class="logo-bracket">[</span>JEA<span class="logo-bracket">]</span>
+          </span>
+          <p class="footer-tagline">Jhon Eric Arbas</p>
+          <p class="footer-role">Computer Science Student &amp; Aspiring Software Developer</p>
+        </div>
+
+        <div class="footer-nav">
+          <nav aria-label="Footer navigation">
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#skills">Skills</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#experience">Experience</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-social">
+          <a href="mailto:jhonericarbas@email.com" class="social-icon" aria-label="Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook">
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          <span class="mono">©</span> 2025 Jhon Eric Arbas.
+          <span class="footer-built">Built with intention.</span>
+        </p>
+        <p class="footer-stack mono">HTML · CSS · JavaScript</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ PROJECT MODAL ═══ -->
+  <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close" aria-label="Close project details">
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+      <div class="modal-content" id="modal-content">
+        <!-- Dynamic content inserted by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/data-loader.js"></script>
+</body>
+</html>
