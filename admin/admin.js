@@ -1,6 +1,6 @@
 /**
  * admin.js — Admin Dashboard JavaScript
- * Handles: auth guard, data loading, forms, image upload, tags editor
+ * Handles: auth guard, data loading, forms, image upload, tags editor, dynamic projects and timeline
  */
 'use strict';
 
@@ -42,6 +42,8 @@ function setSaveStatus(el, msg, type) {
 
 /* ─── GLOBAL DATA ─────────────────────────────────── */
 let PORTFOLIO = null;
+let activeProjectId = null;
+const tagStores = {}; // { projectId: string[] }
 
 async function loadData() {
   const res = await fetch('/api/admin/data', { headers: authHeaders() });
@@ -81,8 +83,6 @@ $('#logout-btn').addEventListener('click', () => {
 });
 
 /* ─── TAGS EDITOR ─────────────────────────────────── */
-const tagStores = {}; // { projectId: string[] }
-
 function initTagsEditor(projectId, initialTags = []) {
   tagStores[projectId] = [...initialTags];
   const container = $('#dynamic-tags-editor');
@@ -177,8 +177,6 @@ function initImageUpload(projectId) {
 }
 
 /* ─── DYNAMIC PROJECTS BUILDER ────────────────────── */
-let activeProjectId = null;
-
 function renderProjectTabs() {
   const container = $('#project-tabs-container');
   if (!container) return;
@@ -687,48 +685,11 @@ $('#form-experience')?.addEventListener('submit', async (e) => {
   const submitBtn = e.target.querySelector('button[type="submit"]');
   submitBtn.disabled = true;
 
-    const tagsVal = $(`#${id}-tags`)?.value || '';
-    const tags = tagsVal.split(',').map(t => t.trim()).filter(Boolean);
-
-    // Keep original style classes from the model
-    let typeClass = 'project';
-    let typeLabel = 'Software Projects';
-    let dotClass = '';
-
-    if (id === 'exp-cs') {
-      typeClass = 'edu';
-      typeLabel = 'Education';
-    } else if (id === 'exp-thesis') {
-      typeClass = 'capstone';
-      typeLabel = 'Thesis / Capstone';
-      dotClass = 'marker-dot--accent';
-    } else if (id === 'exp-uiux') {
-      typeClass = 'design';
-      typeLabel = 'UI/UX Projects';
-      dotClass = 'marker-dot--purple';
-    } else if (id === 'exp-cert') {
-      typeClass = 'cert';
-      typeLabel = 'Certifications';
-    }
-
-    return {
-      id,
-      year: $(`#${id}-year`)?.value.trim() || '',
-      typeClass,
-      typeLabel,
-      dotClass,
-      title: $(`#${id}-title`)?.value.trim() || '',
-      org: $(`#${id}-org`)?.value.trim() || '',
-      desc: $(`#${id}-desc`)?.value.trim() || '',
-      tags
-    };
-  });
-
   try {
     const res = await fetch('/api/admin/experience', {
       method: 'PUT',
       headers: authHeaders(),
-      body: JSON.stringify({ experience }),
+      body: JSON.stringify({ experience: PORTFOLIO.experience }),
     });
     const data = await res.json();
     if (res.ok) {
