@@ -55,10 +55,11 @@ const navItems = $$('.nav-item[data-panel]');
 const panels   = $$('.panel');
 const topbarTitle = $('#topbar-title');
 const panelLabels = {
-  projects: 'Projects',
-  profile:  'Profile',
-  contact:  'Contact',
-  settings: 'Settings',
+  projects:   'Projects',
+  profile:    'Profile',
+  contact:    'Contact',
+  experience: 'Experience & Edu',
+  settings:   'Settings',
 };
 
 navItems.forEach(item => {
@@ -232,6 +233,17 @@ function populateForms(data) {
   if ($('#contact-github'))   $('#contact-github').value   = contact.github   || '';
   if ($('#contact-linkedin')) $('#contact-linkedin').value = contact.linkedin || '';
   if ($('#contact-facebook')) $('#contact-facebook').value = contact.facebook || '';
+
+  // Experience
+  const expList = data.experience || [];
+  expList.forEach(exp => {
+    const id = exp.id;
+    if ($(`#${id}-year`))  $(`#${id}-year`).value = exp.year || '';
+    if ($(`#${id}-title`)) $(`#${id}-title`).value = exp.title || '';
+    if ($(`#${id}-org`))   $(`#${id}-org`).value = exp.org || '';
+    if ($(`#${id}-desc`))  $(`#${id}-desc`).value = exp.desc || '';
+    if ($(`#${id}-tags`))  $(`#${id}-tags`).value = (exp.tags || []).join(', ');
+  });
 }
 
 /* ─── PROJECT FORM SUBMIT ─────────────────────────── */
@@ -368,6 +380,74 @@ $('#form-password')?.addEventListener('submit', async (e) => {
   } catch (err) {
     setSaveStatus(statusEl, '✗ Failed', 'error');
   } finally { submitBtn.disabled = false; }
+});
+
+/* ─── EXPERIENCE FORM ─────────────────────────────── */
+$('#form-experience')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const statusEl = $('#experience-status');
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+
+  const ids = ['exp-cs', 'exp-thesis', 'exp-projects', 'exp-uiux', 'exp-cert'];
+  const experience = ids.map(id => {
+    const tagsVal = $(`#${id}-tags`)?.value || '';
+    const tags = tagsVal.split(',').map(t => t.trim()).filter(Boolean);
+
+    // Keep original style classes from the model
+    let typeClass = 'project';
+    let typeLabel = 'Software Projects';
+    let dotClass = '';
+
+    if (id === 'exp-cs') {
+      typeClass = 'edu';
+      typeLabel = 'Education';
+    } else if (id === 'exp-thesis') {
+      typeClass = 'capstone';
+      typeLabel = 'Thesis / Capstone';
+      dotClass = 'marker-dot--accent';
+    } else if (id === 'exp-uiux') {
+      typeClass = 'design';
+      typeLabel = 'UI/UX Projects';
+      dotClass = 'marker-dot--purple';
+    } else if (id === 'exp-cert') {
+      typeClass = 'cert';
+      typeLabel = 'Certifications';
+    }
+
+    return {
+      id,
+      year: $(`#${id}-year`)?.value.trim() || '',
+      typeClass,
+      typeLabel,
+      dotClass,
+      title: $(`#${id}-title`)?.value.trim() || '',
+      org: $(`#${id}-org`)?.value.trim() || '',
+      desc: $(`#${id}-desc`)?.value.trim() || '',
+      tags
+    };
+  });
+
+  try {
+    const res = await fetch('/api/admin/experience', {
+      method: 'PUT',
+      headers: authHeaders(),
+      body: JSON.stringify({ experience }),
+    });
+    const data = await res.json();
+    if (res.ok) {
+      setSaveStatus(statusEl, '✓ Saved!', 'success');
+      showToast('Experience timeline updated!');
+    } else {
+      setSaveStatus(statusEl, `✗ ${data.error}`, 'error');
+      showToast(data.error, 'error');
+    }
+  } catch (err) {
+    setSaveStatus(statusEl, '✗ Failed', 'error');
+    showToast('Failed: ' + err.message, 'error');
+  } finally {
+    submitBtn.disabled = false;
+  }
 });
 
 /* ─── INIT ────────────────────────────────────────── */

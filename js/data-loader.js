@@ -20,6 +20,7 @@ function patchPortfolio(data) {
   patchProfile(data.profile);
   patchContact(data.contact);
   patchProjects(data.projects);
+  patchExperience(data.experience);
 }
 
 /* ─── PROFILE ─────────────────────────────────────── */
@@ -175,3 +176,42 @@ function patchProjects(projects) {
     }
   });
 }
+
+/* ─── EXPERIENCE ──────────────────────────────────── */
+function patchExperience(experience) {
+  if (!experience || !experience.length) return;
+
+  const timeline = document.querySelector('.timeline');
+  if (!timeline) return;
+
+  timeline.innerHTML = experience.map(exp => {
+    const dotClassAttr = exp.dotClass ? ` ${exp.dotClass}` : '';
+    const tagsHTML = (exp.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+    
+    return `
+      <div class="timeline-item reveal" id="${exp.id}">
+        <div class="timeline-marker" aria-hidden="true">
+          <div class="marker-dot${dotClassAttr}"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-meta">
+            <span class="timeline-year">${exp.year}</span>
+            <span class="timeline-type ${exp.typeClass}">${exp.typeLabel}</span>
+          </div>
+          <h3 class="timeline-title">${exp.title}</h3>
+          <p class="timeline-org">${exp.org}</p>
+          <p class="timeline-desc">${exp.desc}</p>
+          <div class="timeline-tags">
+            ${tagsHTML}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Re-run checking for reveal elements in main.js
+  if (typeof initScrollReveal === 'function') {
+    initScrollReveal();
+  }
+}
+

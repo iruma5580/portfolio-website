@@ -90,7 +90,11 @@ const initScrollReveal = () => {
   };
 
   // Step 1: add the "hide" class only via JS (so no-JS users see content)
-  revealEls.forEach(el => el.classList.add('will-reveal'));
+  revealEls.forEach(el => {
+    if (!el.classList.contains('visible')) {
+      el.classList.add('will-reveal');
+    }
+  });
 
   // Step 2: immediately reveal anything already in or above the viewport
   const checkInView = () => {

@@ -172,4 +172,21 @@ router.post('/change-password', async (req, res) => {
   }
 });
 
+/* ─── PUT /api/admin/experience ───────────────────── */
+router.put('/experience', (req, res) => {
+  try {
+    const data = readData();
+    const { experience } = req.body;
+    if (experience !== undefined && Array.isArray(experience)) {
+      data.experience = experience;
+      writeData(data);
+      res.json({ success: true, experience: data.experience });
+    } else {
+      res.status(400).json({ error: 'Invalid experience data format' });
+    }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 module.exports = router;

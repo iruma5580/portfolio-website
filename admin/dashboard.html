@@ -36,6 +36,11 @@
         <span>Contact</span>
       </button>
 
+      <button class="nav-item" data-panel="experience">
+        <i class="fas fa-graduation-cap"></i>
+        <span>Experience &amp; Edu</span>
+      </button>
+
       <span class="nav-section-label">System</span>
 
       <button class="nav-item" data-panel="settings">
@@ -341,6 +346,70 @@
           <div class="save-row">
             <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Contact</button>
             <span class="save-status" id="contact-status"></span>
+          </div>
+        </form>
+      </div>
+
+      <!-- ═══ EXPERIENCE PANEL ═══ -->
+      <div class="panel" id="panel-experience">
+        <div class="panel-header">
+          <h2 class="panel-title">Experience &amp; Education</h2>
+          <p class="panel-desc">Update your education timeline, projects, and certification history.</p>
+        </div>
+        <form id="form-experience">
+          <!-- EDUCATION -->
+          <div class="card">
+            <div class="card-title"><i class="fas fa-graduation-cap"></i> 1. CS Education</div>
+            <div class="form-group"><label class="form-label">Year Range</label><input type="text" class="form-input" id="exp-cs-year" placeholder="2021 — Present" /></div>
+            <div class="form-group"><label class="form-label">Degree Title</label><input type="text" class="form-input" id="exp-cs-title" placeholder="Bachelor of Science in Computer Science" /></div>
+            <div class="form-group"><label class="form-label">University / College</label><input type="text" class="form-input" id="exp-cs-org" placeholder="University Name" /></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea class="form-input textarea" id="exp-cs-desc"></textarea></div>
+            <div class="form-group"><label class="form-label">Skills (Comma-separated)</label><input type="text" class="form-input" id="exp-cs-tags" placeholder="CS Fundamentals, Algorithms, Data Structures" /></div>
+          </div>
+
+          <!-- THESIS -->
+          <div class="card">
+            <div class="card-title"><i class="fas fa-microchip"></i> 2. Thesis / Capstone</div>
+            <div class="form-group"><label class="form-label">Year Range</label><input type="text" class="form-input" id="exp-thesis-year" /></div>
+            <div class="form-group"><label class="form-label">Project Title</label><input type="text" class="form-input" id="exp-thesis-title" /></div>
+            <div class="form-group"><label class="form-label">Organization / Subject</label><input type="text" class="form-input" id="exp-thesis-org" /></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea class="form-input textarea" id="exp-thesis-desc"></textarea></div>
+            <div class="form-group"><label class="form-label">Skills (Comma-separated)</label><input type="text" class="form-input" id="exp-thesis-tags" /></div>
+          </div>
+
+          <!-- SOFTWARE PROJECTS -->
+          <div class="card">
+            <div class="card-title"><i class="fas fa-code"></i> 3. Software Projects</div>
+            <div class="form-group"><label class="form-label">Year Range</label><input type="text" class="form-input" id="exp-projects-year" /></div>
+            <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" id="exp-projects-title" /></div>
+            <div class="form-group"><label class="form-label">Organization / Scope</label><input type="text" class="form-input" id="exp-projects-org" /></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea class="form-input textarea" id="exp-projects-desc"></textarea></div>
+            <div class="form-group"><label class="form-label">Skills (Comma-separated)</label><input type="text" class="form-input" id="exp-projects-tags" /></div>
+          </div>
+
+          <!-- UI/UX PROJECTS -->
+          <div class="card">
+            <div class="card-title"><i class="fas fa-pen-ruler"></i> 4. UI/UX Projects</div>
+            <div class="form-group"><label class="form-label">Year Range</label><input type="text" class="form-input" id="exp-uiux-year" /></div>
+            <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" id="exp-uiux-title" /></div>
+            <div class="form-group"><label class="form-label">Organization / Scope</label><input type="text" class="form-input" id="exp-uiux-org" /></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea class="form-input textarea" id="exp-uiux-desc"></textarea></div>
+            <div class="form-group"><label class="form-label">Skills (Comma-separated)</label><input type="text" class="form-input" id="exp-uiux-tags" /></div>
+          </div>
+
+          <!-- CERTIFICATIONS -->
+          <div class="card">
+            <div class="card-title"><i class="fas fa-certificate"></i> 5. Certifications</div>
+            <div class="form-group"><label class="form-label">Year Range</label><input type="text" class="form-input" id="exp-cert-year" /></div>
+            <div class="form-group"><label class="form-label">Title</label><input type="text" class="form-input" id="exp-cert-title" /></div>
+            <div class="form-group"><label class="form-label">Platforms / Institutions</label><input type="text" class="form-input" id="exp-cert-org" /></div>
+            <div class="form-group"><label class="form-label">Description</label><textarea class="form-input textarea" id="exp-cert-desc"></textarea></div>
+            <div class="form-group"><label class="form-label">Skills (Comma-separated)</label><input type="text" class="form-input" id="exp-cert-tags" /></div>
+          </div>
+
+          <div class="save-row">
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Timeline</button>
+            <span class="save-status" id="experience-status"></span>
           </div>
         </form>
       </div>

@@ -121,5 +121,62 @@
       "figma": "",
       "live": ""
     }
-  }
+  },
+  "experience": [
+    {
+      "id": "exp-cs",
+      "year": "2021 — Present",
+      "typeClass": "edu",
+      "typeLabel": "Education",
+      "dotClass": "",
+      "title": "Bachelor of Science in Computer Science",
+      "org": "University / College",
+      "desc": "Pursuing a BS in Computer Science with focus on software engineering, systems design, database management, algorithms, and practical application development.",
+      "tags": ["CS Fundamentals", "Algorithms", "Data Structures", "Systems Design"]
+    },
+    {
+      "id": "exp-thesis",
+      "year": "2024 — 2025",
+      "typeClass": "capstone",
+      "typeLabel": "Thesis / Capstone",
+      "dotClass": "marker-dot--accent",
+      "title": "SafeAlert — IoT Emergency Response System",
+      "org": "Capstone / Thesis Project",
+      "desc": "Designed and developed an IoT-based wearable fall detection and emergency response system integrating ESP32, sensors, a web application dashboard, and Android mobile notifications.",
+      "tags": ["ESP32", "IoT", "Web App", "Android", "Database"]
+    },
+    {
+      "id": "exp-projects",
+      "year": "2023 — 2024",
+      "typeClass": "project",
+      "typeLabel": "Software Projects",
+      "dotClass": "",
+      "title": "Software Development Projects",
+      "org": "Academic & Personal Projects",
+      "desc": "Built BudgetPal (personal finance web app) and Student Record System (VB.NET desktop application) as applied software development exercises covering the full development lifecycle.",
+      "tags": ["Web Dev", "VB.NET", "WinForms", "Database"]
+    },
+    {
+      "id": "exp-uiux",
+      "year": "2023 — 2024",
+      "typeClass": "design",
+      "typeLabel": "UI/UX Projects",
+      "dotClass": "marker-dot--purple",
+      "title": "FOX LEARN — E-Learning App Design",
+      "org": "UI/UX Design Project",
+      "desc": "Designed a complete e-learning mobile application in Figma with comprehensive user flows, wireframes, UI components, and interactive prototypes focused on learner experience.",
+      "tags": ["Figma", "UI Design", "UX Design", "Prototyping"]
+    },
+    {
+      "id": "exp-cert",
+      "year": "Ongoing",
+      "typeClass": "cert",
+      "typeLabel": "Certifications",
+      "dotClass": "",
+      "title": "Technical Certifications & Training",
+      "org": "Online Platforms & Institutions",
+      "desc": "Continuously pursuing certifications and training in web development, software engineering, UI/UX design, and emerging technologies to complement academic study.",
+      "tags": ["Web Dev", "Software Engineering", "UI/UX", "IoT"]
+    }
+  ]
 }
