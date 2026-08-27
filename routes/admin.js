@@ -114,6 +114,71 @@ router.put('/projects/:projectId', (req, res) => {
   }
 });
 
+/* ─── POST /api/admin/projects ────────────────────── */
+router.post('/projects', (req, res) => {
+  try {
+    const data = readData();
+    const { id, title } = req.body;
+
+    if (!id || !title) {
+      return res.status(400).json({ error: 'Project ID (slug) and Title are required' });
+    }
+
+    const cleanId = id.toLowerCase().replace(/[^a-z0-9-_]/g, '');
+    if (data.projects[cleanId]) {
+      return res.status(400).json({ error: `Project with ID "${cleanId}" already exists` });
+    }
+
+    // Default template for a new project card
+    data.projects[cleanId] = {
+      num: String(Object.keys(data.projects).length + 1).padStart(2, '0'),
+      title,
+      category: 'New Category',
+      imgSrc: '',
+      imgAlt: `${title} preview`,
+      overview: 'New project overview description.',
+      problem: '',
+      solution: '',
+      process: '',
+      result: '',
+      features: ['Feature 1'],
+      tech: ['HTML', 'CSS', 'JavaScript'],
+      github: '',
+      figma: '',
+      live: ''
+    };
+
+    writeData(data);
+    res.json({ success: true, projectId: cleanId, project: data.projects[cleanId] });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+/* ─── DELETE /api/admin/projects/:projectId ───────── */
+router.delete('/projects/:projectId', (req, res) => {
+  try {
+    const { projectId } = req.params;
+    const data = readData();
+
+    if (!data.projects[projectId]) {
+      return res.status(404).json({ error: `Project "${projectId}" not found` });
+    }
+
+    delete data.projects[projectId];
+
+    // Re-index project numbers for display consistency (e.g. 01, 02, 03)
+    Object.keys(data.projects).forEach((id, idx) => {
+      data.projects[id].num = String(idx + 1).padStart(2, '0');
+    });
+
+    writeData(data);
+    res.json({ success: true, message: `Project "${projectId}" deleted` });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 /* ─── POST /api/admin/projects/:projectId/image ───── */
 router.post('/projects/:projectId/image', upload.single('image'), (req, res) => {
   try {

@@ -117,64 +117,77 @@ function patchProjects(projects) {
 
   // Update the global PROJECTS object used by the modal system
   if (window.PROJECTS) {
+    Object.keys(window.PROJECTS).forEach(id => {
+      if (!projects[id]) delete window.PROJECTS[id];
+    });
     Object.entries(projects).forEach(([id, proj]) => {
-      if (window.PROJECTS[id]) {
-        Object.assign(window.PROJECTS[id], proj);
-      }
+      window.PROJECTS[id] = proj;
     });
   }
 
-  // Patch project cards in the DOM
-  Object.entries(projects).forEach(([id, proj]) => {
-    const card = document.querySelector(`#project-${id}`);
-    if (!card) return;
+  const grid = document.querySelector('.project-grid');
+  if (!grid) return;
 
-    // Image
-    if (proj.imgSrc) {
-      const img = card.querySelector('.project-img');
-      if (img) {
-        img.src = `/${proj.imgSrc}`;
-        img.alt = proj.imgAlt || proj.title;
-      }
+  grid.innerHTML = Object.entries(projects).map(([id, proj]) => {
+    const isFeatured = proj.num === '01' ? ' project-card--featured' : '';
+    const imgSrc = proj.imgSrc ? `/${proj.imgSrc}` : '';
+    
+    // Choose icon based on category keywords
+    let iconClass = 'fa-code';
+    const catLower = (proj.category || '').toLowerCase();
+    if (catLower.includes('iot') || catLower.includes('hardware') || catLower.includes('sensor') || catLower.includes('emergency')) {
+      iconClass = 'fa-microchip';
+    } else if (catLower.includes('design') || catLower.includes('ui') || catLower.includes('ux') || catLower.includes('figma') || catLower.includes('mobile')) {
+      iconClass = 'fa-pen-ruler';
+    } else if (catLower.includes('finance') || catLower.includes('budget') || catLower.includes('wallet')) {
+      iconClass = 'fa-wallet';
+    } else if (catLower.includes('desktop') || catLower.includes('winforms') || catLower.includes('database') || catLower.includes('system')) {
+      iconClass = 'fa-desktop';
     }
 
-    // Title
-    if (proj.title) {
-      const titleEl = card.querySelector('.project-title');
-      if (titleEl) titleEl.textContent = proj.title;
+    const techHTML = (proj.tech || []).map(t => `<span class="tag">${t}</span>`).join('');
+    
+    // Generate links
+    let linksHTML = '';
+    if (proj.github) {
+      linksHTML += `<a href="${proj.github}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" aria-label="${proj.title} on GitHub"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>`;
+    }
+    if (proj.figma) {
+      linksHTML += `<a href="${proj.figma}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" aria-label="${proj.title} on Figma"><i class="fab fa-figma" aria-hidden="true"></i> Figma</a>`;
+    }
+    if (proj.live) {
+      linksHTML += `<a href="${proj.live}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" aria-label="${proj.title} Live Demo"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live</a>`;
     }
 
-    // Category
-    if (proj.category) {
-      const catEl = card.querySelector('.project-category');
-      if (catEl) catEl.textContent = proj.category;
-    }
+    const badgeLabel = (proj.category || '').replace(/•/g, '·').replace(/\s+/g, ' ');
 
-    // Tech tags
-    if (proj.tech && proj.tech.length) {
-      const tagsEl = card.querySelector('.project-tags');
-      if (tagsEl) {
-        tagsEl.innerHTML = proj.tech.map(t =>
-          `<span class="tag">${t}</span>`
-        ).join('');
-      }
-    }
-
-    // GitHub / Figma / Live links
-    const actions = card.querySelector('.project-actions');
-    if (actions) {
-      const githubBtn = actions.querySelector('a[aria-label*="GitHub"], a[aria-label*="GitHub"]');
-      const figmaBtn  = actions.querySelector('a[aria-label*="Figma"]');
-
-      if (githubBtn && proj.github) {
-        githubBtn.href = proj.github || '#';
-        githubBtn.style.display = proj.github ? '' : 'none';
-      }
-      if (figmaBtn && proj.figma) {
-        figmaBtn.href = proj.figma || '#';
-      }
-    }
-  });
+    return `
+      <article class="project-card${isFeatured} reveal" id="project-${id}" tabindex="0" role="button" aria-label="View ${proj.title} project details">
+        <div class="project-img-wrap">
+          <img src="${imgSrc}" alt="${proj.imgAlt || proj.title}" class="project-img" loading="lazy" />
+          <div class="project-img-overlay" aria-hidden="true"></div>
+          <div class="project-number" aria-hidden="true">${proj.num}</div>
+          <div class="project-category-badge">
+            <i class="fas ${iconClass}" aria-hidden="true"></i> ${badgeLabel}
+          </div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">${proj.title}</h3>
+          <p class="project-category">${proj.category}</p>
+          <p class="project-desc">${proj.overview || ''}</p>
+          <div class="project-tags">
+            ${techHTML}
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-primary btn-sm project-detail-btn" data-project="${id}" aria-label="View ${proj.title} case study">
+              <i class="fas fa-arrow-right" aria-hidden="true"></i> View Project
+            </button>
+            ${linksHTML}
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
 }
 
 /* ─── EXPERIENCE ──────────────────────────────────── */

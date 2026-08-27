@@ -80,27 +80,12 @@ $('#logout-btn').addEventListener('click', () => {
   window.location.href = '/admin';
 });
 
-/* ─── PROJECT TABS ────────────────────────────────── */
-const projTabs   = $$('.proj-tab');
-const projPanels = $$('.project-panel');
-
-projTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    const proj = tab.dataset.proj;
-    projTabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    projPanels.forEach(p => p.classList.remove('active'));
-    const target = $(`#proj-${proj}`);
-    if (target) target.classList.add('active');
-  });
-});
-
 /* ─── TAGS EDITOR ─────────────────────────────────── */
 const tagStores = {}; // { projectId: string[] }
 
 function initTagsEditor(projectId, initialTags = []) {
   tagStores[projectId] = [...initialTags];
-  const container = $(`#tags-${projectId}`);
+  const container = $('#dynamic-tags-editor');
   if (!container) return;
 
   const render = () => {
@@ -108,7 +93,7 @@ function initTagsEditor(projectId, initialTags = []) {
     tagStores[projectId].forEach((tag, i) => {
       const el = document.createElement('span');
       el.className = 'tag-item';
-      el.innerHTML = `${tag}<button class="tag-remove" aria-label="Remove ${tag}"><i class="fas fa-times"></i></button>`;
+      el.innerHTML = `${tag}<button type="button" class="tag-remove" aria-label="Remove ${tag}"><i class="fas fa-times"></i></button>`;
       el.querySelector('.tag-remove').addEventListener('click', () => {
         tagStores[projectId].splice(i, 1);
         render();
@@ -133,17 +118,20 @@ function initTagsEditor(projectId, initialTags = []) {
       }
     });
     container.appendChild(input);
-    container.addEventListener('click', () => input.focus());
   };
   render();
 }
 
 /* ─── IMAGE UPLOAD ────────────────────────────────── */
 function initImageUpload(projectId) {
-  const input   = $(`.img-file-input[data-project="${projectId}"]`);
-  const preview = $(`#preview-${projectId}`);
-  const area    = $(`#upload-area-${projectId}`);
+  const input   = $('#dynamic-file-input');
+  const preview = $('#dynamic-img-preview');
+  const area    = $('#dynamic-upload-area');
   if (!input || !preview || !area) return;
+
+  // Clone input to clear previous event listeners
+  const newInput = input.cloneNode(true);
+  input.parentNode.replaceChild(newInput, input);
 
   const handleFile = async (file) => {
     if (!file) return;
@@ -167,6 +155,7 @@ function initImageUpload(projectId) {
       const data = await res.json();
       if (res.ok) {
         showToast(`Image uploaded for ${projectId}!`);
+        PORTFOLIO.projects[projectId].imgSrc = data.imgSrc;
       } else {
         showToast(data.error || 'Upload failed', 'error');
       }
@@ -175,45 +164,406 @@ function initImageUpload(projectId) {
     }
   };
 
-  input.addEventListener('change', () => handleFile(input.files[0]));
+  newInput.addEventListener('change', () => handleFile(newInput.files[0]));
 
   // Drag & drop
-  area.addEventListener('dragover', (e) => { e.preventDefault(); area.classList.add('drag-over'); });
-  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
-  area.addEventListener('drop', (e) => {
+  area.ondragover = (e) => { e.preventDefault(); area.classList.add('drag-over'); };
+  area.ondragleave = () => area.classList.remove('drag-over');
+  area.ondrop = (e) => {
     e.preventDefault();
     area.classList.remove('drag-over');
     handleFile(e.dataTransfer.files[0]);
+  };
+}
+
+/* ─── DYNAMIC PROJECTS BUILDER ────────────────────── */
+let activeProjectId = null;
+
+function renderProjectTabs() {
+  const container = $('#project-tabs-container');
+  if (!container) return;
+
+  const projectIds = Object.keys(PORTFOLIO.projects || {});
+  if (!activeProjectId && projectIds.length) {
+    activeProjectId = projectIds[0];
+  }
+
+  container.innerHTML = projectIds.map(id => {
+    const proj = PORTFOLIO.projects[id];
+    const activeClass = id === activeProjectId ? ' active' : '';
+    return `<button type="button" class="proj-tab${activeClass}" data-proj="${id}">${proj.title || id}</button>`;
+  }).join('');
+
+  $$('.proj-tab', container).forEach(tab => {
+    tab.addEventListener('click', () => {
+      saveActiveProjectToMemory();
+      activeProjectId = tab.dataset.proj;
+      renderProjectTabs();
+      renderActiveProjectForm();
+    });
   });
 }
 
-/* ─── POPULATE FORMS ──────────────────────────────── */
-function populateForms(data) {
-  const projects = data.projects || {};
+function saveActiveProjectToMemory() {
+  if (!activeProjectId || !PORTFOLIO.projects[activeProjectId]) return;
+  
+  const form = $('#dynamic-proj-form');
+  if (!form) return;
 
-  // Populate each project form
-  Object.entries(projects).forEach(([id, proj]) => {
-    const form = $(`.proj-form[data-project="${id}"]`);
-    if (!form) return;
+  PORTFOLIO.projects[activeProjectId].title = $('#proj-edit-title').value.trim();
+  PORTFOLIO.projects[activeProjectId].category = $('#proj-edit-category').value.trim();
+  PORTFOLIO.projects[activeProjectId].overview = $('#proj-edit-overview').value.trim();
+  PORTFOLIO.projects[activeProjectId].problem = $('#proj-edit-problem').value.trim();
+  PORTFOLIO.projects[activeProjectId].solution = $('#proj-edit-solution').value.trim();
+  PORTFOLIO.projects[activeProjectId].process = $('#proj-edit-process').value.trim();
+  PORTFOLIO.projects[activeProjectId].result = $('#proj-edit-result').value.trim();
+  PORTFOLIO.projects[activeProjectId].github = $('#proj-edit-github').value.trim();
+  PORTFOLIO.projects[activeProjectId].figma = $('#proj-edit-figma').value.trim();
+  PORTFOLIO.projects[activeProjectId].live = $('#proj-edit-live').value.trim();
+  PORTFOLIO.projects[activeProjectId].tech = tagStores[activeProjectId] || [];
+}
 
-    const textFields = ['title', 'category', 'overview', 'problem', 'solution', 'process', 'result', 'github', 'figma', 'live'];
-    textFields.forEach(field => {
-      const el = form.querySelector(`[name="${field}"]`);
-      if (el && proj[field] !== undefined) el.value = proj[field];
+function renderActiveProjectForm() {
+  const container = $('#project-panels-container');
+  if (!container) return;
+
+  if (!activeProjectId || !PORTFOLIO.projects[activeProjectId]) {
+    container.innerHTML = `<div class="card"><p class="mono text2" style="text-align:center;padding:20px;">No projects found. Click "Add Project" to create one.</p></div>`;
+    return;
+  }
+
+  const proj = PORTFOLIO.projects[activeProjectId];
+
+  container.innerHTML = `
+        <div class="project-panel active">
+          <form class="proj-form" id="dynamic-proj-form">
+            <div class="card">
+              <div class="card-title"><i class="fas fa-info-circle"></i> Basic Info</div>
+              <div class="form-group">
+                <label class="form-label">Project Title</label>
+                <input type="text" class="form-input" id="proj-edit-title" placeholder="Project Title" value="${proj.title || ''}" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Category / Subtitle</label>
+                <input type="text" class="form-input" id="proj-edit-category" placeholder="Web App • IoT • ..." value="${proj.category || ''}" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Overview</label>
+                <textarea class="form-input textarea-lg" id="proj-edit-overview" placeholder="Project overview...">${proj.overview || ''}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Problem</label>
+                <textarea class="form-input textarea" id="proj-edit-problem" placeholder="What problem does this solve?">${proj.problem || ''}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Solution</label>
+                <textarea class="form-input textarea" id="proj-edit-solution" placeholder="How did you solve it?">${proj.solution || ''}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Development Process</label>
+                <textarea class="form-input textarea" id="proj-edit-process" placeholder="How was it built?">${proj.process || ''}</textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Result</label>
+                <textarea class="form-input textarea" id="proj-edit-result" placeholder="What was the outcome?">${proj.result || ''}</textarea>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><i class="fas fa-tags"></i> Technologies</div>
+              <label class="form-label">Tech Stack Tags</label>
+              <div class="tags-editor" id="dynamic-tags-editor"></div>
+              <p class="tags-hint">Type a tag and press Enter or comma to add</p>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><i class="fas fa-image"></i> Project Preview Image</div>
+              <div class="img-upload-area" id="dynamic-upload-area">
+                <input type="file" accept="image/*" class="img-file-input" id="dynamic-file-input" />
+                <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <p class="upload-text">Click or drag & drop to upload screenshot</p>
+                <p class="upload-hint">PNG, JPG, WebP — max 10MB</p>
+              </div>
+              <div class="img-preview" id="dynamic-img-preview">
+                <div class="img-preview-placeholder">No custom image uploaded yet</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-title"><i class="fas fa-link"></i> Links</div>
+              <div class="form-group">
+                <label class="form-label">GitHub URL</label>
+                <input type="url" class="form-input" id="proj-edit-github" placeholder="https://github.com/..." value="${proj.github || ''}" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Figma URL (if applicable)</label>
+                <input type="url" class="form-input" id="proj-edit-figma" placeholder="https://figma.com/..." value="${proj.figma || ''}" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Live Demo URL (if applicable)</label>
+                <input type="url" class="form-input" id="proj-edit-live" placeholder="https://..." value="${proj.live || ''}" />
+              </div>
+            </div>
+
+            <div class="save-row">
+              <button type="submit" class="btn btn-primary" id="btn-save-project"><i class="fas fa-save"></i> Save Project</button>
+              <button type="button" class="btn btn-danger" id="btn-delete-project"><i class="fas fa-trash-alt"></i> Delete Project</button>
+              <span class="save-status" id="project-save-status"></span>
+            </div>
+          </form>
+        </div>
+  `;
+
+  initTagsEditor(activeProjectId, proj.tech || []);
+
+  const preview = $('#dynamic-img-preview');
+  if (preview && proj.imgSrc) {
+    preview.innerHTML = `<img src="/${proj.imgSrc}" alt="${proj.title} preview" onerror="this.parentElement.innerHTML='<div class=\\'img-preview-placeholder\\'>Current: ${proj.imgSrc.split('/').pop()}</div>'" />`;
+  }
+
+  initImageUpload(activeProjectId);
+
+  // Form submit for project
+  $('#dynamic-proj-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    saveActiveProjectToMemory();
+    const statusEl = $('#project-save-status');
+    const submitBtn = $('#btn-save-project');
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(`/api/admin/projects/${activeProjectId}`, {
+        method: 'PUT',
+        headers: authHeaders(),
+        body: JSON.stringify(PORTFOLIO.projects[activeProjectId]),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setSaveStatus(statusEl, '✓ Saved!', 'success');
+        showToast(`Project "${PORTFOLIO.projects[activeProjectId].title}" saved!`);
+        renderProjectTabs();
+      } else {
+        setSaveStatus(statusEl, `✗ ${data.error}`, 'error');
+      }
+    } catch (err) {
+      setSaveStatus(statusEl, '✗ Save failed', 'error');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Delete project
+  $('#btn-delete-project').addEventListener('click', async () => {
+    if (!confirm(`Are you sure you want to delete "${proj.title || activeProjectId}"?`)) return;
+
+    try {
+      const res = await fetch(`/api/admin/projects/${activeProjectId}`, {
+        method: 'DELETE',
+        headers: authHeaders()
+      });
+      const data = await res.json();
+      if (res.ok) {
+        showToast(`Project deleted!`);
+        delete PORTFOLIO.projects[activeProjectId];
+        activeProjectId = null;
+        renderProjectTabs();
+        renderActiveProjectForm();
+      } else {
+        showToast(data.error || 'Delete failed', 'error');
+      }
+    } catch (err) {
+      showToast('Delete failed: ' + err.message, 'error');
+    }
+  });
+}
+
+// Add project button
+$('#btn-add-project')?.addEventListener('click', async () => {
+  const title = prompt('Enter the Project Title:');
+  if (!title) return;
+
+  const id = prompt('Enter a short URL slug / ID (e.g. my-app, no spaces):');
+  if (!id) return;
+
+  const cleanId = id.toLowerCase().replace(/[^a-z0-9-_]/g, '');
+  if (!cleanId) return;
+
+  try {
+    const res = await fetch('/api/admin/projects', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ id: cleanId, title }),
     });
+    const data = await res.json();
+    if (res.ok) {
+      showToast('Project created successfully!');
+      PORTFOLIO.projects[cleanId] = data.project;
+      activeProjectId = cleanId;
+      renderProjectTabs();
+      renderActiveProjectForm();
+    } else {
+      alert(data.error || 'Failed to create project');
+    }
+  } catch (err) {
+    alert('Server error: ' + err.message);
+  }
+});
 
-    // Tags
-    initTagsEditor(id, proj.tech || []);
+/* ─── DYNAMIC EXPERIENCE LIST BUILDER ──────────────── */
+function renderExperienceList() {
+  const container = $('#experience-list-container');
+  if (!container) return;
 
-    // Image preview
-    const preview = $(`#preview-${id}`);
-    if (preview && proj.imgSrc) {
-      preview.innerHTML = `<img src="/${proj.imgSrc}" alt="${proj.title} preview" onerror="this.parentElement.innerHTML='<div class=\\'img-preview-placeholder\\'>Current: ${proj.imgSrc.split('/').pop()}</div>'" />`;
+  container.innerHTML = '';
+  
+  if (!PORTFOLIO.experience || !PORTFOLIO.experience.length) {
+    container.innerHTML = `<div class="card"><p class="mono text2" style="text-align:center;padding:10px;">No timeline entries found. Click "Add Timeline Card" to create one.</p></div>`;
+    return;
+  }
+
+  PORTFOLIO.experience.forEach((exp, index) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.index = index;
+
+    card.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; border-bottom:1.5px solid var(--border); padding-bottom:12px;">
+        <div class="card-title" style="margin-bottom:0; border-bottom:none; padding-bottom:0;">
+          <i class="fas fa-history"></i> Timeline Card #${index + 1}
+        </div>
+        <button type="button" class="btn btn-danger btn-sm btn-delete-exp" data-index="${index}" style="padding: 5px 10px; font-size:0.75rem;">
+          <i class="fas fa-trash-alt"></i> Delete Card
+        </button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Card Type (Visual Style)</label>
+        <select class="form-input exp-edit-type" data-index="${index}">
+          <option value="edu" ${exp.typeClass === 'edu' ? 'selected' : ''}>Education (Green dot)</option>
+          <option value="capstone" ${exp.typeClass === 'capstone' ? 'selected' : ''}>Thesis / Capstone (Blue-green dot)</option>
+          <option value="project" ${exp.typeClass === 'project' ? 'selected' : ''}>Software Projects (Gray dot)</option>
+          <option value="design" ${exp.typeClass === 'design' ? 'selected' : ''}>UI/UX Projects (Purple dot)</option>
+          <option value="cert" ${exp.typeClass === 'cert' ? 'selected' : ''}>Certifications (White/Gray dot)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Year Range</label>
+        <input type="text" class="form-input exp-edit-year" data-index="${index}" placeholder="e.g. 2024 — 2025" value="${exp.year || ''}" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-input exp-edit-title" data-index="${index}" placeholder="e.g. Bachelor of Science in Computer Science" value="${exp.title || ''}" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Organization / College</label>
+        <input type="text" class="form-input exp-edit-org" data-index="${index}" placeholder="e.g. University / Company" value="${exp.org || ''}" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea class="form-input textarea exp-edit-desc" data-index="${index}" placeholder="Brief description...">${exp.desc || ''}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Skills (Comma-separated)</label>
+        <input type="text" class="form-input exp-edit-tags" data-index="${index}" placeholder="e.g. React, Node.js, Git" value="${(exp.tags || []).join(', ')}" />
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  // Attach delete button listeners
+  $$('.btn-delete-exp', container).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const index = parseInt(btn.dataset.index);
+      if (!confirm(`Are you sure you want to delete Timeline Card #${index + 1}?`)) return;
+      
+      saveExperienceInputsToMemory();
+      PORTFOLIO.experience.splice(index, 1);
+      renderExperienceList();
+    });
+  });
+}
+
+function saveExperienceInputsToMemory() {
+  if (!PORTFOLIO.experience) return;
+  
+  const cards = $$('#experience-list-container .card');
+  cards.forEach(card => {
+    const index = parseInt(card.dataset.index);
+    if (isNaN(index) || !PORTFOLIO.experience[index]) return;
+
+    const selectEl = card.querySelector('.exp-edit-type');
+    const yearEl   = card.querySelector('.exp-edit-year');
+    const titleEl  = card.querySelector('.exp-edit-title');
+    const orgEl    = card.querySelector('.exp-edit-org');
+    const descEl   = card.querySelector('.exp-edit-desc');
+    const tagsEl   = card.querySelector('.exp-edit-tags');
+
+    const typeClass = selectEl.value;
+    let typeLabel = 'Software Projects';
+    let dotClass = '';
+
+    if (typeClass === 'edu') {
+      typeLabel = 'Education';
+    } else if (typeClass === 'capstone') {
+      typeLabel = 'Thesis / Capstone';
+      dotClass = 'marker-dot--accent';
+    } else if (typeClass === 'design') {
+      typeLabel = 'UI/UX Projects';
+      dotClass = 'marker-dot--purple';
+    } else if (typeClass === 'cert') {
+      typeLabel = 'Certifications';
     }
 
-    // Init upload
-    initImageUpload(id);
+    const tags = tagsEl.value.split(',').map(t => t.trim()).filter(Boolean);
+
+    PORTFOLIO.experience[index] = {
+      id: PORTFOLIO.experience[index].id || `exp-${Date.now()}-${index}`,
+      year: yearEl.value.trim(),
+      typeClass,
+      typeLabel,
+      dotClass,
+      title: titleEl.value.trim(),
+      org: orgEl.value.trim(),
+      desc: descEl.value.trim(),
+      tags
+    };
   });
+}
+
+// Add timeline card button handler
+$('#btn-add-experience')?.addEventListener('click', () => {
+  saveExperienceInputsToMemory();
+  if (!PORTFOLIO.experience) PORTFOLIO.experience = [];
+  
+  PORTFOLIO.experience.push({
+    id: `exp-${Date.now()}`,
+    year: '2026',
+    typeClass: 'project',
+    typeLabel: 'Software Projects',
+    dotClass: '',
+    title: 'New Position / Project',
+    org: 'New Organization',
+    desc: 'Description goes here.',
+    tags: ['Tech Stack']
+  });
+
+  renderExperienceList();
+});
+
+/* ─── POPULATE FORMS ──────────────────────────────── */
+function populateForms(data) {
+  // Projects List
+  renderProjectTabs();
+  renderActiveProjectForm();
+
+  // Experience List
+  renderExperienceList();
 
   // Profile
   const prof = data.profile || {};
@@ -233,60 +583,7 @@ function populateForms(data) {
   if ($('#contact-github'))   $('#contact-github').value   = contact.github   || '';
   if ($('#contact-linkedin')) $('#contact-linkedin').value = contact.linkedin || '';
   if ($('#contact-facebook')) $('#contact-facebook').value = contact.facebook || '';
-
-  // Experience
-  const expList = data.experience || [];
-  expList.forEach(exp => {
-    const id = exp.id;
-    if ($(`#${id}-year`))  $(`#${id}-year`).value = exp.year || '';
-    if ($(`#${id}-title`)) $(`#${id}-title`).value = exp.title || '';
-    if ($(`#${id}-org`))   $(`#${id}-org`).value = exp.org || '';
-    if ($(`#${id}-desc`))  $(`#${id}-desc`).value = exp.desc || '';
-    if ($(`#${id}-tags`))  $(`#${id}-tags`).value = (exp.tags || []).join(', ');
-  });
 }
-
-/* ─── PROJECT FORM SUBMIT ─────────────────────────── */
-$$('.proj-form').forEach(form => {
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const projectId = form.dataset.project;
-    const statusEl  = form.querySelector('.save-status');
-    const submitBtn = form.querySelector('button[type="submit"]');
-
-    const body = {};
-    ['title','category','overview','problem','solution','process','result','github','figma','live'].forEach(field => {
-      const el = form.querySelector(`[name="${field}"]`);
-      if (el) body[field] = el.value.trim();
-    });
-    body.tech = tagStores[projectId] || [];
-
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-
-    try {
-      const res = await fetch(`/api/admin/projects/${projectId}`, {
-        method: 'PUT',
-        headers: authHeaders(),
-        body: JSON.stringify(body),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setSaveStatus(statusEl, '✓ Saved!', 'success');
-        showToast(`${form.querySelector('[name="title"]')?.value || projectId} saved!`);
-      } else {
-        setSaveStatus(statusEl, `✗ ${data.error}`, 'error');
-        showToast(data.error, 'error');
-      }
-    } catch (err) {
-      setSaveStatus(statusEl, '✗ Save failed', 'error');
-      showToast('Save failed: ' + err.message, 'error');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `<i class="fas fa-save"></i> Save`;
-    }
-  });
-});
 
 /* ─── PROFILE FORM ────────────────────────────────── */
 $('#form-profile')?.addEventListener('submit', async (e) => {
@@ -385,12 +682,11 @@ $('#form-password')?.addEventListener('submit', async (e) => {
 /* ─── EXPERIENCE FORM ─────────────────────────────── */
 $('#form-experience')?.addEventListener('submit', async (e) => {
   e.preventDefault();
+  saveExperienceInputsToMemory();
   const statusEl = $('#experience-status');
   const submitBtn = e.target.querySelector('button[type="submit"]');
   submitBtn.disabled = true;
 
-  const ids = ['exp-cs', 'exp-thesis', 'exp-projects', 'exp-uiux', 'exp-cert'];
-  const experience = ids.map(id => {
     const tagsVal = $(`#${id}-tags`)?.value || '';
     const tags = tagsVal.split(',').map(t => t.trim()).filter(Boolean);
 

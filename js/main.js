@@ -318,30 +318,40 @@ const initModal = () => {
     document.body.style.overflow = '';
   };
 
-  // Trigger buttons
-  $$('.project-detail-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openModal(btn.dataset.project);
-    });
-  });
+  // Event delegation on project grid for dynamic items
+  const grid = $('.project-grid');
+  if (grid) {
+    grid.addEventListener('click', (e) => {
+      // Check if clicked the "View Project" button
+      const btn = e.target.closest('.project-detail-btn');
+      if (btn) {
+        e.stopPropagation();
+        openModal(btn.dataset.project);
+        return;
+      }
 
-  // Card click (except buttons inside)
-  $$('.project-card').forEach(card => {
-    card.addEventListener('click', (e) => {
+      // Ignore if clicked on github/figma links
       if (e.target.closest('.btn')) return;
-      const projectId = card.id.replace('project-', '');
-      openModal(projectId);
-    });
 
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
+      // Check if clicked the card wrapper
+      const card = e.target.closest('.project-card');
+      if (card) {
         const projectId = card.id.replace('project-', '');
         openModal(projectId);
       }
     });
-  });
+
+    grid.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        const card = e.target.closest('.project-card');
+        if (card) {
+          e.preventDefault();
+          const projectId = card.id.replace('project-', '');
+          openModal(projectId);
+        }
+      }
+    });
+  }
 
   // Close button
   closeBtn.addEventListener('click', closeModal);
