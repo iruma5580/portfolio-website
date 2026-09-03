@@ -73,14 +73,24 @@ function patchContact(contact) {
 
   // Contact section links
   const emailLink    = document.querySelector('#contact-email');
+  const phoneLink    = document.querySelector('#contact-phone');
+  const locationEl   = document.querySelector('#contact-location');
   const githubLink   = document.querySelector('#contact-github');
   const linkedinLink = document.querySelector('#contact-linkedin');
-  const facebookLink = document.querySelector('#contact-facebook');
 
   if (emailLink && contact.email) {
     emailLink.href = `mailto:${contact.email}`;
     const val = emailLink.querySelector('.contact-link-val');
     if (val) val.textContent = contact.email;
+  }
+  if (phoneLink && contact.phone) {
+    phoneLink.href = `tel:${contact.phone.replace(/[^+\d]/g, '')}`;
+    const val = phoneLink.querySelector('.contact-link-val');
+    if (val) val.textContent = contact.phone;
+  }
+  if (locationEl && contact.location) {
+    const val = locationEl.querySelector('.contact-link-val');
+    if (val) val.textContent = contact.location;
   }
   if (githubLink && contact.github) {
     githubLink.href = contact.github;
@@ -92,19 +102,13 @@ function patchContact(contact) {
     const val = linkedinLink.querySelector('.contact-link-val');
     if (val) val.textContent = contact.linkedin.replace('https://', '');
   }
-  if (facebookLink && contact.facebook) {
-    facebookLink.href = contact.facebook;
-    const val = facebookLink.querySelector('.contact-link-val');
-    if (val) val.textContent = contact.facebook.replace('https://', '');
-  }
 
   // Footer social icons
   const footerIcons = document.querySelectorAll('.footer-social .social-icon');
   const socials = [
-    { icon: 'fa-envelope', href: `mailto:${contact.email}` },
+    { icon: 'fa-envelope', href: contact.email ? `mailto:${contact.email}` : '' },
     { icon: 'fa-github',   href: contact.github },
-    { icon: 'fa-linkedin', href: contact.linkedin },
-    { icon: 'fa-facebook', href: contact.facebook },
+    { icon: 'fa-linkedin', href: contact.linkedin }
   ];
   footerIcons.forEach((icon, i) => {
     if (socials[i] && socials[i].href) icon.href = socials[i].href;
@@ -115,7 +119,7 @@ function patchContact(contact) {
 function patchProjects(projects) {
   if (!projects) return;
 
-  // Update the global PROJECTS object used by the modal system
+  // Update the global PROJECTS object
   if (window.PROJECTS) {
     Object.keys(window.PROJECTS).forEach(id => {
       if (!projects[id]) delete window.PROJECTS[id];
@@ -125,69 +129,41 @@ function patchProjects(projects) {
     });
   }
 
-  const grid = document.querySelector('.project-grid');
-  if (!grid) return;
+  const list = document.querySelector('.projects-list');
+  if (!list) return;
 
-  grid.innerHTML = Object.entries(projects).map(([id, proj]) => {
-    const isFeatured = proj.num === '01' ? ' project-card--featured' : '';
-    const imgSrc = proj.imgSrc ? `/${proj.imgSrc}` : '';
-    
-    // Choose icon based on category keywords
-    let iconClass = 'fa-code';
-    const catLower = (proj.category || '').toLowerCase();
-    if (catLower.includes('iot') || catLower.includes('hardware') || catLower.includes('sensor') || catLower.includes('emergency')) {
-      iconClass = 'fa-microchip';
-    } else if (catLower.includes('design') || catLower.includes('ui') || catLower.includes('ux') || catLower.includes('figma') || catLower.includes('mobile')) {
-      iconClass = 'fa-pen-ruler';
-    } else if (catLower.includes('finance') || catLower.includes('budget') || catLower.includes('wallet')) {
-      iconClass = 'fa-wallet';
-    } else if (catLower.includes('desktop') || catLower.includes('winforms') || catLower.includes('database') || catLower.includes('system')) {
-      iconClass = 'fa-desktop';
-    }
+  list.innerHTML = Object.entries(projects).map(([id, proj]) => {
+    const techHTML = (proj.tech || []).map(t => {
+      const isPurple = (proj.category || '').toLowerCase().includes('iot') || (proj.category || '').toLowerCase().includes('design');
+      return `<span class="tag${isPurple ? ' tag-purple' : ''}">${t}</span>`;
+    }).join('');
 
-    const techHTML = (proj.tech || []).map(t => `<span class="tag">${t}</span>`).join('');
-    
-    // Generate links
-    let linksHTML = '';
-    if (proj.github) {
-      linksHTML += `<a href="${proj.github}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" aria-label="${proj.title} on GitHub"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>`;
-    }
-    if (proj.figma) {
-      linksHTML += `<a href="${proj.figma}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" aria-label="${proj.title} on Figma"><i class="fab fa-figma" aria-hidden="true"></i> Figma</a>`;
-    }
-    if (proj.live) {
-      linksHTML += `<a href="${proj.live}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener" aria-label="${proj.title} Live Demo"><i class="fas fa-external-link-alt" aria-hidden="true"></i> Live</a>`;
-    }
-
-    const badgeLabel = (proj.category || '').replace(/•/g, '·').replace(/\s+/g, ' ');
+    const bullets = proj.features || (proj.overview ? [proj.overview] : []);
+    const bulletsHTML = bullets.map(b => `<li>${b}</li>`).join('');
 
     return `
-      <article class="project-card${isFeatured} reveal" id="project-${id}" tabindex="0" role="button" aria-label="View ${proj.title} project details">
-        <div class="project-img-wrap">
-          <img src="${imgSrc}" alt="${proj.imgAlt || proj.title}" class="project-img" loading="lazy" />
-          <div class="project-img-overlay" aria-hidden="true"></div>
-          <div class="project-number" aria-hidden="true">${proj.num}</div>
-          <div class="project-category-badge">
-            <i class="fas ${iconClass}" aria-hidden="true"></i> ${badgeLabel}
+      <article class="project-item reveal" id="project-${id}">
+        <div class="project-item-header">
+          <div class="project-title-group">
+            <span class="project-num-badge">${proj.num || '01'}</span>
+            <h3 class="project-title">${proj.title}</h3>
+            <span class="project-divider">—</span>
+            <span class="project-category">${proj.category || ''}</span>
           </div>
         </div>
-        <div class="project-content">
-          <h3 class="project-title">${proj.title}</h3>
-          <p class="project-category">${proj.category}</p>
-          <p class="project-desc">${proj.overview || ''}</p>
-          <div class="project-tags">
-            ${techHTML}
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-primary btn-sm project-detail-btn" data-project="${id}" aria-label="View ${proj.title} case study">
-              <i class="fas fa-arrow-right" aria-hidden="true"></i> View Project
-            </button>
-            ${linksHTML}
-          </div>
+        <ul class="project-bullets">
+          ${bulletsHTML}
+        </ul>
+        <div class="project-tags">
+          ${techHTML}
         </div>
       </article>
     `;
   }).join('');
+
+  if (typeof initScrollReveal === 'function') {
+    initScrollReveal();
+  }
 }
 
 /* ─── EXPERIENCE ──────────────────────────────────── */
@@ -200,6 +176,9 @@ function patchExperience(experience) {
   timeline.innerHTML = experience.map(exp => {
     const dotClassAttr = exp.dotClass ? ` ${exp.dotClass}` : '';
     const tagsHTML = (exp.tags || []).map(t => `<span class="tag">${t}</span>`).join('');
+    const bulletsHTML = exp.bullets && exp.bullets.length
+      ? `<ul class="project-bullets" style="margin-top: 10px;">${exp.bullets.map(b => `<li>${b}</li>`).join('')}</ul>`
+      : '';
     
     return `
       <div class="timeline-item reveal" id="${exp.id}">
@@ -213,7 +192,8 @@ function patchExperience(experience) {
           </div>
           <h3 class="timeline-title">${exp.title}</h3>
           <p class="timeline-org">${exp.org}</p>
-          <p class="timeline-desc">${exp.desc}</p>
+          <p class="timeline-desc">${exp.desc || ''}</p>
+          ${bulletsHTML}
           <div class="timeline-tags">
             ${tagsHTML}
           </div>

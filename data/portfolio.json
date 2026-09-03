@@ -1,182 +1,126 @@
 {
   "profile": {
-    "name": "Jhon Eric Arbas",
-    "role": "Computer Science Student & Aspiring Software Developer",
-    "intro": "I build practical digital solutions through software development, IoT, UI/UX, and modern technology.",
+    "name": "Jhon Eric V. Arbas",
+    "role": "Associate Software Engineer / CS Graduate",
+    "intro": "Entry-level Computer Science graduate with hands-on experience developing academic applications, web systems, IoT solutions, and an operational Purchase Requisition System.",
     "badge": "Available for opportunities",
     "about": [
-      "Hi, I'm <strong>Jhon Eric Arbas</strong> — a Computer Science student with a passion for building practical, real-world technology solutions. I enjoy the full spectrum of development, from designing clean user interfaces to integrating hardware systems through IoT.",
-      "My work spans across <strong>software development</strong>, <strong>web applications</strong>, <strong>IoT systems</strong>, and <strong>UI/UX design</strong> — disciplines I treat as complementary rather than isolated. I believe the best products are ones that are both technically sound and genuinely pleasant to use.",
-      "Whether it's a fall-detection wearable connected to an emergency web dashboard, or a polished e-learning mobile app crafted in Figma — I'm driven by building things that actually solve problems."
+      "Hi, I'm <strong>Jhon Eric V. Arbas</strong> — an entry-level Computer Science graduate with hands-on experience developing academic applications, web systems, IoT solutions, and an operational Purchase Requisition System.",
+      "Working knowledge of <strong>Python, JavaScript, Visual Basic, Django, HTML, CSS, Git/GitHub, databases</strong>, and application development. Experienced in building application features, working with data and workflows, testing, troubleshooting, and collaborating in project teams.",
+      "Comfortable using AI-assisted development tools while actively strengthening independent programming and software engineering skills. Currently seeking an <strong>Associate Software Engineer</strong> opportunity."
     ]
   },
   "contact": {
-    "email": "jhonericarbas@email.com",
-    "github": "https://github.com/jhonericarbas",
-    "linkedin": "https://linkedin.com/in/jhonericarbas",
-    "facebook": "https://facebook.com/jhonericarbas"
+    "email": "Jhonericarbas227170@gmail.com",
+    "phone": "+63 993748 9374",
+    "location": "Kawit, Cavite, Philippines",
+    "github": "https://github.com/yuno0997",
+    "portfolio": "https://jea-portfolio.onrender.com",
+    "linkedin": "https://linkedin.com",
+    "facebook": "https://facebook.com"
   },
   "projects": {
-    "safealert": {
+    "safealert-web": {
       "num": "01",
-      "title": "SafeAlert",
-      "category": "Web Application • IoT • Emergency Response System",
-      "imgSrc": "assets/images/safealert_preview.svg",
-      "imgAlt": "SafeAlert IoT emergency response dashboard",
-      "overview": "SafeAlert is a comprehensive IoT-based wearable fall detection and emergency response system developed as a Computer Science thesis/capstone project. It integrates embedded hardware, real-time web application monitoring, and Android mobile notifications into a cohesive emergency response ecosystem.",
-      "problem": "Falls among elderly and vulnerable individuals are a leading cause of injury and medical emergencies. Traditional alert systems are often reactive and slow — relying on the individual to manually trigger an alert. SafeAlert aims to solve this by automatically detecting falls and immediately dispatching emergency notifications without requiring user action.",
-      "solution": "An ESP32-based wearable device continuously monitors motion using accelerometer and gyroscope sensors. Upon fall detection, it transmits real-time data to a web application dashboard and triggers emergency alerts — notifying designated contacts and displaying emergency information including location and alert timestamps.",
+      "title": "SafeAlert Web App",
+      "category": "Thesis Capstone",
+      "overview": "SafeAlert Web App is the central monitoring and emergency dispatch dashboard for an IoT-based wearable fall detection system.",
       "features": [
-        "Automatic fall detection via ESP32 + sensors",
-        "Real-time emergency alert dashboard",
-        "Web application monitoring interface",
-        "Android mobile notifications",
-        "Alert history and event logging",
-        "Emergency contact management",
-        "System health monitoring",
-        "IoT device status tracking"
+        "Contributed across front-end/UI, HTML/CSS, JavaScript, backend, database/SQL, authentication, APIs, dashboard, testing, documentation, and system integration.",
+        "Worked on the system flow from wearable fall detection through information transmission, application receipt, alert display, and emergency response.",
+        "Used AI-assisted development to support implementation, troubleshooting, and project completion."
       ],
-      "tech": ["ESP32", "IoT", "Sensors", "Web Development", "Database", "Android", "JavaScript", "HTML/CSS"],
-      "process": "Development followed a hardware-first approach: sensor selection and ESP32 firmware, then data pipeline design, followed by web dashboard development and Android integration. Testing included real-world fall simulation scenarios with iterative sensor calibration.",
-      "result": "A functional end-to-end IoT emergency response system demonstrating hardware-software integration competency, practical CS application, and real-world problem solving.",
-      "github": "",
-      "figma": "",
-      "live": ""
+      "tech": ["HTML5", "CSS3", "JavaScript", "Backend", "Database/SQL", "REST APIs", "Dashboard", "System Integration"]
     },
-    "foxlearn": {
+    "safealert-band": {
       "num": "02",
-      "title": "FOX LEARN",
-      "category": "UI/UX Design • E-Learning Mobile Application",
-      "imgSrc": "assets/images/foxlearn_preview.svg",
-      "imgAlt": "FOX LEARN e-learning mobile app design",
-      "overview": "FOX LEARN is a fully designed e-learning mobile application crafted in Figma, featuring a clean, friendly, and learner-focused interface. The project emphasizes accessible UI/UX design for online education — covering user flows, component design, and interactive prototyping.",
-      "problem": "Many e-learning platforms feel overwhelming or visually cold, leading to poor learner engagement and retention. There is a need for mobile learning applications that are both functionally clear and emotionally engaging — especially for younger learners.",
-      "solution": "FOX LEARN was designed with a warm, approachable visual identity featuring a fox mascot, clear information hierarchy, and intuitive navigation patterns. The design prioritizes learner motivation, progress visibility, and reduced cognitive load.",
+      "title": "SafeAlert Band",
+      "category": "IoT Fall Detection and Emergency Response System",
+      "overview": "Wearable IoT device designed to automatically detect falls in vulnerable individuals and transmit real-time alerts.",
       "features": [
-        "Complete Figma design system",
-        "Mobile-first UI components",
-        "Interactive prototype flows",
-        "Course catalog interface",
-        "Progress tracking screens",
-        "Quiz and assessment UI",
-        "User onboarding flow",
-        "Wireframes and hi-fi mockups"
+        "Worked across Arduino programming, sensor integration, hardware, testing, troubleshooting, and system components with AI assistance.",
+        "Worked with sensor values, variables, conditions, Arduino libraries, device communication, and hardware integration."
       ],
-      "tech": ["Figma", "UI Design", "UX Design", "Prototyping", "Wireframing", "Mobile App Design"],
-      "process": "Started with user research and wireframes, then developed a design system with the FOX LEARN visual identity. Hi-fidelity screens were designed section by section, followed by interactive prototype linking in Figma for user flow validation.",
-      "result": "A polished, production-ready Figma design of an e-learning mobile app demonstrating professional UI/UX skills, design thinking, and mobile design expertise.",
-      "github": "",
-      "figma": "",
-      "live": ""
+      "tech": ["Arduino", "C++ Fundamentals", "Sensors", "IoT", "Hardware Integration", "Embedded Systems"]
+    },
+    "todolist": {
+      "num": "03",
+      "title": "To-Do List",
+      "category": "Django Web Application",
+      "overview": "A dynamic task management web application built with Django and Python.",
+      "features": [
+        "Built a school project using Django and Python with AI assistance.",
+        "Worked with models/database, views, templates, URL routing, forms, CRUD functionality, Django admin, authentication, database connectivity, and debugging."
+      ],
+      "tech": ["Python", "Django", "SQLite", "HTML5", "CSS3", "CRUD", "Authentication"]
     },
     "budgetpal": {
-      "num": "03",
-      "title": "BudgetPal",
-      "category": "Web Application • UI/UX • Database",
-      "imgSrc": "assets/images/budgetpal_preview.svg",
-      "imgAlt": "BudgetPal personal finance web application",
-      "overview": "BudgetPal is a personal budgeting and transaction management web application designed to help users track their income, expenses, and financial goals through a clean, intuitive interface with comprehensive data visualization.",
-      "problem": "Personal finance management is often done manually through spreadsheets or complex apps that overwhelm users with features. There is a need for a simple, focused tool that makes budgeting approachable and actionable for everyday users.",
-      "solution": "BudgetPal provides a streamlined dashboard with clear budget overviews, easy transaction entry, category management, and visual spending breakdowns. The design prioritizes simplicity and daily usability over feature complexity.",
-      "features": [
-        "Financial dashboard overview",
-        "Income and expense tracking",
-        "Transaction history and search",
-        "Budget category management",
-        "Visual spending analytics",
-        "Database-backed data persistence",
-        "Intuitive data entry forms",
-        "Responsive web interface"
-      ],
-      "tech": ["Web Development", "JavaScript", "HTML/CSS", "UI/UX Design", "Database"],
-      "process": "Designed UI mockups first, then built the frontend with clean HTML/CSS and JavaScript. Database schema was designed for efficient transaction querying and budget aggregation.",
-      "result": "A functional personal finance web application demonstrating full-stack web development, UI/UX design integration, and database-driven application design.",
-      "github": "",
-      "figma": "",
-      "live": ""
-    },
-    "studentrecord": {
       "num": "04",
-      "title": "Student Record System",
-      "category": "Desktop Application • Database",
-      "imgSrc": "assets/images/studentrecord_preview.svg",
-      "imgAlt": "Student Record System desktop application",
-      "overview": "The Student Record System is a desktop-based application built with Visual Basic .NET and WinForms for efficiently managing student information within an educational institution. It provides a robust interface for CRUD operations on student records with database integration.",
-      "problem": "Manual student record management through paper or simple spreadsheets leads to inefficiency, data inconsistency, and difficulty in information retrieval. Educational institutions need organized digital solutions for managing student data securely.",
-      "solution": "A purpose-built desktop application providing structured data entry, editing, deletion, and retrieval of student records. The system features organized forms, searchable record tables, and reliable database connectivity.",
+      "title": "BudgetPal",
+      "category": "Financial Budgeting Application",
+      "overview": "Personal budgeting and transaction application designed for expense and income management.",
       "features": [
-        "Student profile management",
-        "Complete CRUD operations",
-        "Searchable student database",
-        "Structured data entry forms",
-        "Record filtering and sorting",
-        "Desktop GUI with WinForms",
-        "Database-backed persistence",
-        "Clean tabular data display"
+        "Contributed to a Visual Basic school group project as the backend/database contributor.",
+        "Worked on the database component of a financial budgeting application."
       ],
-      "tech": ["Visual Basic .NET", "WinForms", "Database", "Desktop Development"],
-      "process": "Began with database schema design, followed by UI design in the WinForms designer. Business logic was implemented with VB.NET, connecting UI actions to database operations with proper validation and error handling.",
-      "result": "A fully functional student record management desktop application demonstrating VB.NET proficiency, WinForms development, and database application design.",
-      "github": "",
-      "figma": "",
-      "live": ""
+      "tech": ["Visual Basic", "Database", "Backend", "Desktop Application"]
+    },
+    "foxlearn": {
+      "num": "05",
+      "title": "Fox Learn",
+      "category": "UI/UX Design",
+      "overview": "A comprehensive e-learning application interface designed in Figma with high-fidelity screens and prototypes.",
+      "features": [
+        "Designed an e-learning application interface in Figma using wireframes, high-fidelity screens, prototypes, components, Auto Layout, variants, design-system elements, responsive/mobile designs, and user flows."
+      ],
+      "tech": ["Figma", "UI/UX Design", "Wireframing", "High-Fidelity UI", "Prototyping", "Auto Layout", "Design Systems"]
     }
   },
   "experience": [
     {
-      "id": "exp-cs",
-      "year": "2021 — Present",
+      "id": "exp-internship",
+      "year": "2025 | 500 hours",
+      "typeClass": "project",
+      "typeLabel": "Work Experience",
+      "dotClass": "marker-dot--accent",
+      "title": "Data Analyst Intern",
+      "org": "BP - Waterworks Inc. | Operational Department",
+      "desc": "Built most of a Purchase Requisition System (PRS) in AppSheet with occasional guidance from a supervisor/team. Developed the PRS workflow covering employee requests, submission, approval, processing/status tracking, and PDF/document generation. Built and configured application views, forms, tables/data sources, relationships, actions/buttons, workflows/automation, user permissions, dashboards, and reports. Used AppSheet expressions and formulas with AI assistance and implemented PDF export functionality. Used Excel for data processing and functions, and worked with Google Apps Script with AI assistance. Assisted with computer hardware setup, Windows troubleshooting, PC assembly, hardware installation, and printer setup.",
+      "bullets": [
+        "Built most of a Purchase Requisition System (PRS) in AppSheet with occasional guidance from a supervisor/team.",
+        "Developed the PRS workflow covering employee requests, submission, approval, processing/status tracking, and PDF/document generation.",
+        "Built and configured application views, forms, tables/data sources, relationships, actions/buttons, workflows/automation, user permissions, dashboards, and reports.",
+        "Used AppSheet expressions and formulas with AI assistance and implemented PDF export functionality.",
+        "Used Excel for data processing and functions, and worked with Google Apps Script with AI assistance.",
+        "Assisted with computer hardware setup, Windows troubleshooting, PC assembly, hardware installation, and printer setup."
+      ],
+      "tags": ["AppSheet", "Workflow Automation", "Google Apps Script", "Excel Functions", "Hardware Setup", "IT Support"]
+    },
+    {
+      "id": "exp-education",
+      "year": "Graduating 2026",
       "typeClass": "edu",
       "typeLabel": "Education",
       "dotClass": "",
       "title": "Bachelor of Science in Computer Science",
-      "org": "University / College",
-      "desc": "Pursuing a BS in Computer Science with focus on software engineering, systems design, database management, algorithms, and practical application development.",
-      "tags": ["CS Fundamentals", "Algorithms", "Data Structures", "Systems Design"]
+      "org": "AISAT College - Dasmariñas",
+      "desc": "Studying core computer science curriculum with strong emphasis on software engineering, database management, systems analysis, programming fundamentals, and human-computer interaction.",
+      "tags": ["Web Development", "Programming", "Database Management", "Software Engineering", "HCI", "Systems Analysis"]
     },
     {
-      "id": "exp-thesis",
+      "id": "exp-certifications",
       "year": "2024 — 2025",
-      "typeClass": "capstone",
-      "typeLabel": "Thesis / Capstone",
-      "dotClass": "marker-dot--accent",
-      "title": "SafeAlert — IoT Emergency Response System",
-      "org": "Capstone / Thesis Project",
-      "desc": "Designed and developed an IoT-based wearable fall detection and emergency response system integrating ESP32, sensors, a web application dashboard, and Android mobile notifications.",
-      "tags": ["ESP32", "IoT", "Web App", "Android", "Database"]
-    },
-    {
-      "id": "exp-projects",
-      "year": "2023 — 2024",
-      "typeClass": "project",
-      "typeLabel": "Software Projects",
-      "dotClass": "",
-      "title": "Software Development Projects",
-      "org": "Academic & Personal Projects",
-      "desc": "Built BudgetPal (personal finance web app) and Student Record System (VB.NET desktop application) as applied software development exercises covering the full development lifecycle.",
-      "tags": ["Web Dev", "VB.NET", "WinForms", "Database"]
-    },
-    {
-      "id": "exp-uiux",
-      "year": "2023 — 2024",
-      "typeClass": "design",
-      "typeLabel": "UI/UX Projects",
-      "dotClass": "marker-dot--purple",
-      "title": "FOX LEARN — E-Learning App Design",
-      "org": "UI/UX Design Project",
-      "desc": "Designed a complete e-learning mobile application in Figma with comprehensive user flows, wireframes, UI components, and interactive prototypes focused on learner experience.",
-      "tags": ["Figma", "UI Design", "UX Design", "Prototyping"]
-    },
-    {
-      "id": "exp-cert",
-      "year": "Ongoing",
       "typeClass": "cert",
       "typeLabel": "Certifications",
-      "dotClass": "",
-      "title": "Technical Certifications & Training",
-      "org": "Online Platforms & Institutions",
-      "desc": "Continuously pursuing certifications and training in web development, software engineering, UI/UX design, and emerging technologies to complement academic study.",
-      "tags": ["Web Dev", "Software Engineering", "UI/UX", "IoT"]
+      "dotClass": "marker-dot--purple",
+      "title": "Certifications & Credentials",
+      "org": "BP - Waterworks Inc. & UniAthena",
+      "desc": "Completed formal internship certification and foundational programming credentials.",
+      "bullets": [
+        "Internship/OJT Certificate — BP - Waterworks Inc. | 2025",
+        "Introduction to Python Basic — UniAthena | 2024"
+      ],
+      "tags": ["Internship Certificate", "Python", "UniAthena", "BP - Waterworks Inc."]
     }
   ]
 }
