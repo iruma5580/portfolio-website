@@ -169,14 +169,21 @@ const initTerminal = () => {
     const outEl = $(`#${out}`);
     if (!cmdEl || !outEl) return;
 
+    const lineEl = cmdEl.closest('.terminal-line');
     const cmdText = cmdEl.textContent.trim();
 
     setTimeout(async () => {
-      await typeText(cmdEl, cmdText, 60);
-      await new Promise(r => setTimeout(r, 300));
+      if (lineEl) lineEl.classList.add('show');
+      await typeText(cmdEl, cmdText, 50);
+      await new Promise(r => setTimeout(r, 200));
       outEl.classList.add('show');
     }, delay);
   });
+
+  // Safety fallback: ensure content is visible even if animation gets interrupted
+  setTimeout(() => {
+    $$('.terminal-line, .terminal-output').forEach(el => el.classList.add('show'));
+  }, 4500);
 };
 
 /* ─── PROJECT IMAGE FALLBACKS ────────────────────── */

@@ -507,7 +507,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* Terminal animation classes — toggled by JS */
-.terminal-line, .terminal-output { opacity: 0; }
+.terminal-line, .terminal-output {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
 .terminal-line.show, .terminal-output.show { opacity: 1; }
 
 /* Scroll hint */
