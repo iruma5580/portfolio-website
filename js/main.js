@@ -133,57 +133,49 @@ const initScrollReveal = () => {
 };
 
 /* ─── TERMINAL TYPING ────────────────────────────── */
-const initTerminal = () => {
+const initTerminal = async () => {
+  const terminal = $('.hero-terminal');
+  if (!terminal) return;
+
   const lines = [
-    { cmd: 't-cmd-1', out: 't-out-1', delay: 600 },
-    { cmd: 't-cmd-2', out: 't-out-2', delay: 1800 },
-    { cmd: 't-cmd-3', out: 't-out-3', delay: 3200 },
+    { cmdId: 't-cmd-1', text: 'whoami', outId: 't-out-1' },
+    { cmdId: 't-cmd-2', text: 'cat focus.txt', outId: 't-out-2' },
+    { cmdId: 't-cmd-3', text: 'status --current', outId: 't-out-3' }
   ];
 
-  const typeText = (el, text, speed = 55) => {
-    return new Promise(resolve => {
-      const orig = el.innerHTML;
-      el.innerHTML = '';
-      el.classList.add('show');
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-      // Use text content for typing; set HTML once done
-      const plain = el.textContent;
-      let i = 0;
-      const chars = text.split('');
-
-      const tick = () => {
-        if (i < chars.length) {
-          el.textContent += chars[i++];
-          setTimeout(tick, speed + Math.random() * 30);
-        } else {
-          el.innerHTML = orig; // restore original HTML (for icons etc.)
-          resolve();
-        }
-      };
-      tick();
-    });
-  };
-
-  lines.forEach(({ cmd, out, delay }) => {
-    const cmdEl = $(`#${cmd}`);
-    const outEl = $(`#${out}`);
-    if (!cmdEl || !outEl) return;
-
-    const lineEl = cmdEl.closest('.terminal-line');
-    const cmdText = cmdEl.textContent.trim();
-
-    setTimeout(async () => {
-      if (lineEl) lineEl.classList.add('show');
-      await typeText(cmdEl, cmdText, 50);
-      await new Promise(r => setTimeout(r, 200));
-      outEl.classList.add('show');
-    }, delay);
+  // Clear command text initially so typing starts from blank
+  lines.forEach(({ cmdId }) => {
+    const el = document.getElementById(cmdId);
+    if (el) el.textContent = '';
   });
 
-  // Safety fallback: ensure content is visible even if animation gets interrupted
-  setTimeout(() => {
-    $$('.terminal-line, .terminal-output').forEach(el => el.classList.add('show'));
-  }, 4500);
+  await sleep(400);
+
+  for (const { cmdId, text, outId } of lines) {
+    const cmdEl = document.getElementById(cmdId);
+    const outEl = document.getElementById(outId);
+    if (!cmdEl || !outEl) continue;
+
+    const lineEl = cmdEl.closest('.terminal-line');
+    if (lineEl) lineEl.classList.add('show');
+
+    await sleep(200);
+
+    // Type character by character with natural typing cadence
+    for (let i = 0; i < text.length; i++) {
+      cmdEl.textContent += text[i];
+      await sleep(40 + Math.random() * 25);
+    }
+
+    await sleep(250);
+    outEl.classList.add('show');
+    await sleep(450);
+  }
+
+  // Safety check: ensure everything is visible
+  $$('.terminal-line, .terminal-output').forEach(el => el.classList.add('show'));
 };
 
 /* ─── PROJECT IMAGE FALLBACKS ────────────────────── */
