@@ -40,8 +40,14 @@ if (!process.env.JWT_SECRET) {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static portfolio files
-app.use(express.static(path.join(__dirname)));
+// Serve static portfolio files with fresh cache headers
+app.use(express.static(path.join(__dirname), {
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html') || filePath.endsWith('.js') || filePath.endsWith('.css')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
+  }
+}));
 
 // Serve admin panel files
 app.use('/admin', express.static(path.join(__dirname, 'admin')));

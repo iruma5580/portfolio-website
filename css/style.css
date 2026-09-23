@@ -587,12 +587,26 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   50% { opacity: 0; }
 }
 
-/* Terminal animation classes — toggled by JS */
-.terminal-line, .terminal-output {
+/* Terminal visibility: ALWAYS visible by default! */
+.terminal-matrix-intro,
+.terminal-line,
+.terminal-output {
+  opacity: 1;
+}
+
+/* Only hide elements while JavaScript animation is actively running */
+.hero-terminal.is-animating .terminal-matrix-intro,
+.hero-terminal.is-animating .terminal-line,
+.hero-terminal.is-animating .terminal-output {
   opacity: 0;
   transition: opacity 0.25s ease;
 }
-.terminal-line.show, .terminal-output.show { opacity: 1; }
+
+.hero-terminal.is-animating .terminal-matrix-intro.show,
+.hero-terminal.is-animating .terminal-line.show,
+.hero-terminal.is-animating .terminal-output.show {
+  opacity: 1;
+}
 
 /* Scroll hint */
 .hero-scroll-hint {

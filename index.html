@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/previews.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/previews.css?v=2.7.0" />
+  <link rel="stylesheet" href="css/style.css?v=2.7.0" />
 </head>
 <body>
 
@@ -157,6 +157,152 @@
           </div>
         </div>
       </div>
+
+      <!-- Self-executing inline script: runs immediately without waiting for external JS or DOM events -->
+      <script>
+      (function() {
+        var terminal = document.querySelector('.hero-terminal');
+        if (!terminal) return;
+
+        // 1. Matrix Digital Rain Canvas
+        var canvas = document.getElementById('terminal-matrix-canvas');
+        if (canvas) {
+          var ctx = canvas.getContext('2d');
+          var parent = canvas.parentElement;
+          var resize = function() {
+            canvas.width = parent.clientWidth || 320;
+            canvas.height = parent.clientHeight || 240;
+          };
+          resize();
+          window.addEventListener('resize', resize, { passive: true });
+
+          var MATRIX_CHARS = '01010101XYZ0123456789!@#$%^&*<>[]{}/*+=~';
+          var fontSize = 13;
+          var cols = Math.floor(canvas.width / fontSize);
+          var drops = [];
+          for (var c = 0; c < cols; c++) drops.push(1);
+          var last = 0;
+
+          function renderRain(t) {
+            requestAnimationFrame(renderRain);
+            if (t - last < 32) return;
+            last = t;
+
+            var curCols = Math.floor(canvas.width / fontSize);
+            if (drops.length !== curCols) {
+              cols = curCols;
+              drops = [];
+              for (var i = 0; i < cols; i++) drops.push(1);
+            }
+
+            ctx.fillStyle = 'rgba(13, 17, 23, 0.22)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff66';
+            ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+
+            for (var i = 0; i < drops.length; i++) {
+              var ch = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+              ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+              if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                drops[i] = 0;
+              }
+              drops[i]++;
+            }
+          }
+          requestAnimationFrame(renderRain);
+        }
+
+        // Enable animation classes
+        terminal.classList.add('is-animating');
+
+        // 2. Matrix Decode & Typing Sequence
+        var CHARS = '01010101XYZ0123456789!@#$%^&*<>[]{}/*+=~';
+        var sleep = function(ms) { return new Promise(function(r) { setTimeout(r, ms); }); };
+
+        var introEl = document.getElementById('t-matrix-intro');
+        var introTextEl = document.getElementById('t-matrix-text');
+        var lines = [
+          { cmdId: 't-cmd-1', text: 'whoami', outId: 't-out-1' },
+          { cmdId: 't-cmd-2', text: 'cat focus.txt', outId: 't-out-2' },
+          { cmdId: 't-cmd-3', text: 'status --current', outId: 't-out-3' }
+        ];
+
+        // Clear command text initially for typing
+        lines.forEach(function(l) {
+          var el = document.getElementById(l.cmdId);
+          if (el) el.textContent = '';
+        });
+
+        var scramble = function(el, text, duration) {
+          return new Promise(function(resolve) {
+            var step = 0;
+            var total = 22;
+            var interval = setInterval(function() {
+              el.innerHTML = text.split('').map(function(c, i) {
+                if (c === ' ') return ' ';
+                if (i < (step / total) * text.length) return c;
+                var r = CHARS[Math.floor(Math.random() * CHARS.length)];
+                return '<span class="matrix-glitch">' + r + '</span>';
+              }).join('');
+              step++;
+              if (step >= total) {
+                clearInterval(interval);
+                el.textContent = text;
+                resolve();
+              }
+            }, (duration || 650) / total);
+          });
+        };
+
+        var typeCmd = async function(el, text) {
+          el.textContent = '';
+          for (var i = 0; i < text.length; i++) {
+            var r = CHARS[Math.floor(Math.random() * CHARS.length)];
+            el.innerHTML = text.slice(0, i) + '<span class="matrix-glitch">' + r + '</span>';
+            await sleep(20);
+            el.textContent = text.slice(0, i + 1);
+            await sleep(40 + Math.random() * 20);
+          }
+        };
+
+        (async function runTerminal() {
+          await sleep(200);
+
+          if (introEl && introTextEl) {
+            introEl.classList.add('show');
+            await scramble(introTextEl, 'MATRIX PROTOCOL: JEA_PORTFOLIO.SH [READY]', 650);
+            await sleep(300);
+          }
+
+          for (var k = 0; k < lines.length; k++) {
+            var l = lines[k];
+            var cmdEl = document.getElementById(l.cmdId);
+            var outEl = document.getElementById(l.outId);
+            if (!cmdEl || !outEl) continue;
+
+            var lineEl = cmdEl.closest('.terminal-line');
+            if (lineEl) lineEl.classList.add('show');
+
+            await sleep(180);
+            await typeCmd(cmdEl, l.text);
+            await sleep(220);
+            outEl.classList.add('show');
+            await sleep(350);
+          }
+
+          terminal.classList.remove('is-animating');
+        })();
+
+        // Safety fallback: reveal everything after 5s if anything halted
+        setTimeout(function() {
+          terminal.classList.remove('is-animating');
+          if (introEl) introEl.classList.add('show');
+          document.querySelectorAll('.terminal-line, .terminal-output').forEach(function(el) {
+            el.classList.add('show');
+          });
+        }, 5000);
+      })();
+      </script>
     </div>
 
     <div class="hero-scroll-hint" aria-hidden="true">
@@ -861,8 +1007,8 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/projects.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/data-loader.js"></script>
+  <script src="js/projects.js?v=2.7.0"></script>
+  <script src="js/main.js?v=2.7.0"></script>
+  <script src="js/data-loader.js?v=2.7.0"></script>
 </body>
 </html>
