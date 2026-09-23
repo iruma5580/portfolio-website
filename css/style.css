@@ -694,8 +694,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
-  max-width: 960px;
-  margin: 0 auto;
 }
 .about-card {
   background: var(--card);
@@ -742,9 +740,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: flex-start;
   gap: 48px;
   margin-bottom: 36px;
-  max-width: 960px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .profile-photo-col {
@@ -955,8 +950,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   flex-direction: column;
   gap: 20px;
-  max-width: 960px;
-  margin: 0 auto;
 }
 
 .project-item {
