@@ -692,7 +692,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .about-cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
 }
 .about-card {
@@ -735,12 +735,19 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ─── PROFILE PHOTO ──────────────────────────────── */
-.profile-photo-wrap {
+.about-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 36px;
+}
+
+.profile-photo-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin-bottom: 28px;
+  flex-shrink: 0;
 }
 
 .profile-photo-ring {
@@ -749,12 +756,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   height: 160px;
   border-radius: 50%;
   padding: 3px;
-  background: linear-gradient(135deg, #00ff66 0%, #58a6ff 60%, #00ff66 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%, var(--accent) 100%);
   background-size: 200% 200%;
   animation: profileRingRotate 4s linear infinite;
   box-shadow:
-    0 0 22px rgba(0, 255, 102, 0.35),
-    0 0 50px rgba(0, 255, 102, 0.1);
+    0 0 20px rgba(88, 166, 255, 0.3),
+    0 0 45px rgba(88, 166, 255, 0.08);
 }
 
 @keyframes profileRingRotate {
@@ -775,16 +782,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .profile-photo-glow {
   position: absolute;
-  inset: -4px;
+  inset: -6px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,255,102,0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(88, 166, 255, 0.12) 0%, transparent 70%);
   pointer-events: none;
   animation: profileGlowPulse 3s ease-in-out infinite;
 }
 
 @keyframes profileGlowPulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.06); }
 }
 
 .profile-photo-badge {
@@ -792,10 +799,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   align-items: center;
   gap: 6px;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: #00ff66;
-  background: rgba(0, 255, 102, 0.07);
-  border: 1px solid rgba(0, 255, 102, 0.22);
+  font-size: 0.68rem;
+  color: var(--accent);
+  background: rgba(88, 166, 255, 0.07);
+  border: 1px solid rgba(88, 166, 255, 0.2);
   padding: 4px 12px;
   border-radius: 20px;
   letter-spacing: 0.04em;
@@ -805,8 +812,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #00ff66;
-  box-shadow: 0 0 6px #00ff66;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
   animation: matrixPulse 1.5s infinite;
 }
 
@@ -1806,8 +1813,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   .hero-stats { gap: 12px; }
 
   /* About */
-  .about-grid { grid-template-columns: 1fr; gap: 36px; }
-  .about-cards { grid-template-columns: 1fr; }
+  .about-top { flex-direction: column; align-items: center; gap: 28px; }
+  .about-text { text-align: center; }
+  .about-links { justify-content: center; }
+  .about-cards { grid-template-columns: 1fr 1fr; }
 
   /* Skills */
   .skills-grid { grid-template-columns: 1fr; }

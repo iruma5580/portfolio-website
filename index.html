@@ -320,26 +320,28 @@
         <p class="section-sub">Computer Science graduate building practical software, web systems, and IoT solutions</p>
       </div>
 
-      <div class="about-grid">
-        <div class="about-text reveal">
+      <!-- Photo + Text side by side -->
+      <div class="about-top reveal">
 
-          <!-- Profile Photo -->
-          <div class="profile-photo-wrap">
-            <div class="profile-photo-ring">
-              <img
-                src="assets/images/profile.jpg"
-                alt="Jhon Eric V. Arbas — BSCS Graduate"
-                class="profile-photo"
-                loading="eager"
-              />
-              <div class="profile-photo-glow" aria-hidden="true"></div>
-            </div>
-            <div class="profile-photo-badge">
-              <span class="profile-badge-dot"></span>
-              <span>BSCS Graduate · AISAT '26</span>
-            </div>
+        <!-- Left: Profile Photo -->
+        <div class="profile-photo-col">
+          <div class="profile-photo-ring">
+            <img
+              src="assets/images/profile.jpg"
+              alt="Jhon Eric V. Arbas — BSCS Graduate"
+              class="profile-photo"
+              loading="eager"
+            />
+            <div class="profile-photo-glow" aria-hidden="true"></div>
           </div>
+          <div class="profile-photo-badge">
+            <span class="profile-badge-dot"></span>
+            <span>BSCS Graduate · AISAT '26</span>
+          </div>
+        </div>
 
+        <!-- Right: Text -->
+        <div class="about-text">
           <p class="about-para">
             Hi, I'm <strong>Jhon Eric V. Arbas</strong> — an entry-level Computer Science graduate with hands-on
             experience developing academic applications, web systems, IoT solutions, and an operational
@@ -360,61 +362,62 @@
             <a href="#contact" class="btn btn-ghost btn-sm">Get In Touch</a>
           </div>
         </div>
+      </div>
 
-        <div class="about-cards reveal">
-          <div class="about-card" id="about-card-cs">
-            <div class="about-card-icon">
-              <i class="fas fa-graduation-cap" aria-hidden="true"></i>
-            </div>
-            <div class="about-card-info">
-              <h3>Computer Science</h3>
-              <p>BSCS at AISAT College - Dasmariñas (2026), software engineering, algorithms, systems design</p>
-            </div>
+      <!-- Cards: full width below -->
+      <div class="about-cards reveal">
+        <div class="about-card" id="about-card-cs">
+          <div class="about-card-icon">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
           </div>
-          <div class="about-card" id="about-card-sw">
-            <div class="about-card-icon">
-              <i class="fas fa-code" aria-hidden="true"></i>
-            </div>
-            <div class="about-card-info">
-              <h3>Web &amp; Software Dev</h3>
-              <p>Python, Django, JavaScript, HTML5/CSS3, Visual Basic, REST APIs, and CRUD architecture</p>
-            </div>
+          <div class="about-card-info">
+            <h3>Computer Science</h3>
+            <p>BSCS at AISAT College - Dasmariñas (2026), software engineering, algorithms, systems design</p>
           </div>
-          <div class="about-card" id="about-card-iot">
-            <div class="about-card-icon">
-              <i class="fas fa-microchip" aria-hidden="true"></i>
-            </div>
-            <div class="about-card-info">
-              <h3>IoT &amp; Embedded Systems</h3>
-              <p>Arduino/C++, ESP32, sensor integration, device communication, and fall detection hardware</p>
-            </div>
+        </div>
+        <div class="about-card" id="about-card-sw">
+          <div class="about-card-icon">
+            <i class="fas fa-code" aria-hidden="true"></i>
           </div>
-          <div class="about-card" id="about-card-workflow">
-            <div class="about-card-icon">
-              <i class="fas fa-network-wired" aria-hidden="true"></i>
-            </div>
-            <div class="about-card-info">
-              <h3>Workflow Automation</h3>
-              <p>AppSheet Purchase Requisition System (PRS), Google Apps Script, approvals &amp; PDF generation</p>
-            </div>
+          <div class="about-card-info">
+            <h3>Web &amp; Software Dev</h3>
+            <p>Python, Django, JavaScript, HTML5/CSS3, Visual Basic, REST APIs, and CRUD architecture</p>
           </div>
-          <div class="about-card" id="about-card-db">
-            <div class="about-card-icon">
-              <i class="fas fa-database" aria-hidden="true"></i>
-            </div>
-            <div class="about-card-info">
-              <h3>Databases</h3>
-              <p>MySQL, PostgreSQL, SQLite, and Firebase project exposure &amp; data modeling</p>
-            </div>
+        </div>
+        <div class="about-card" id="about-card-iot">
+          <div class="about-card-icon">
+            <i class="fas fa-microchip" aria-hidden="true"></i>
           </div>
-          <div class="about-card" id="about-card-it">
-            <div class="about-card-icon">
-              <i class="fas fa-wrench" aria-hidden="true"></i>
-            </div>
-            <div class="about-card-info">
-              <h3>IT &amp; Systems Setup</h3>
-              <p>PC assembly, hardware installation, printer setup, and Windows troubleshooting</p>
-            </div>
+          <div class="about-card-info">
+            <h3>IoT &amp; Embedded Systems</h3>
+            <p>Arduino/C++, ESP32, sensor integration, device communication, and fall detection hardware</p>
+          </div>
+        </div>
+        <div class="about-card" id="about-card-workflow">
+          <div class="about-card-icon">
+            <i class="fas fa-network-wired" aria-hidden="true"></i>
+          </div>
+          <div class="about-card-info">
+            <h3>Workflow Automation</h3>
+            <p>AppSheet Purchase Requisition System (PRS), Google Apps Script, approvals &amp; PDF generation</p>
+          </div>
+        </div>
+        <div class="about-card" id="about-card-db">
+          <div class="about-card-icon">
+            <i class="fas fa-database" aria-hidden="true"></i>
+          </div>
+          <div class="about-card-info">
+            <h3>Databases</h3>
+            <p>MySQL, PostgreSQL, SQLite, and Firebase project exposure &amp; data modeling</p>
+          </div>
+        </div>
+        <div class="about-card" id="about-card-it">
+          <div class="about-card-icon">
+            <i class="fas fa-wrench" aria-hidden="true"></i>
+          </div>
+          <div class="about-card-info">
+            <h3>IT &amp; Systems Setup</h3>
+            <p>PC assembly, hardware installation, printer setup, and Windows troubleshooting</p>
           </div>
         </div>
       </div>
