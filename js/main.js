@@ -132,10 +132,120 @@ const initScrollReveal = () => {
   setTimeout(() => revealEls.forEach(makeVisible), 1500);
 };
 
-/* ─── TERMINAL TYPING ────────────────────────────── */
+/* ─── MATRIX ENGINE & TERMINAL TYPING ────────────── */
+const MATRIX_CHARS = '01010101XYZ0123456789!@#$%^&*<>[]{}/*+=~';
+
+// Lightweight Matrix Digital Rain Canvas inside terminal
+const initMatrixRain = () => {
+  const canvas = document.getElementById('terminal-matrix-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const parent = canvas.parentElement;
+
+  const resize = () => {
+    canvas.width = parent.clientWidth || 320;
+    canvas.height = parent.clientHeight || 240;
+  };
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  const fontSize = 13;
+  let columns = Math.floor(canvas.width / fontSize);
+  let drops = Array(columns).fill(1);
+
+  let lastTime = 0;
+  const fps = 28;
+  const interval = 1000 / fps;
+
+  const draw = (currentTime) => {
+    requestAnimationFrame(draw);
+
+    const delta = currentTime - lastTime;
+    if (delta < interval) return;
+    lastTime = currentTime - (delta % interval);
+
+    // Re-check columns on resize
+    const currentCols = Math.floor(canvas.width / fontSize);
+    if (drops.length !== currentCols) {
+      columns = currentCols;
+      drops = Array(columns).fill(1);
+    }
+
+    ctx.fillStyle = 'rgba(13, 17, 23, 0.22)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#00ff66';
+    ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+      ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  };
+
+  requestAnimationFrame(draw);
+};
+
+// Scramble text effect (matrix decoding characters)
+const matrixScrambleText = (element, finalText, duration = 650) => {
+  return new Promise(resolve => {
+    const length = finalText.length;
+    let iteration = 0;
+    const totalSteps = 24;
+    const stepDuration = duration / totalSteps;
+
+    const interval = setInterval(() => {
+      element.innerHTML = finalText
+        .split('')
+        .map((char, index) => {
+          if (char === ' ') return ' ';
+          if (index < (iteration / totalSteps) * length) {
+            return char;
+          }
+          const randomGlyph = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+          return `<span class="matrix-glitch">${randomGlyph}</span>`;
+        })
+        .join('');
+
+      iteration++;
+
+      if (iteration >= totalSteps) {
+        clearInterval(interval);
+        element.textContent = finalText;
+        resolve();
+      }
+    }, stepDuration);
+  });
+};
+
+// Character-by-character typing with Matrix glitch effect
+const matrixTypeCommand = async (cmdEl, text, speed = 45) => {
+  cmdEl.textContent = '';
+  for (let i = 0; i < text.length; i++) {
+    // Briefly flash a random matrix glyph before the actual character locks in
+    const randomGlyph = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+    cmdEl.innerHTML = text.slice(0, i) + `<span class="matrix-glitch">${randomGlyph}</span>`;
+    await new Promise(r => setTimeout(r, 22));
+    cmdEl.textContent = text.slice(0, i + 1);
+    await new Promise(r => setTimeout(r, speed + Math.random() * 20));
+  }
+};
+
 const initTerminal = async () => {
   const terminal = $('.hero-terminal');
   if (!terminal) return;
+
+  // Initialize Matrix Digital Rain background
+  initMatrixRain();
+
+  const introEl = $('#t-matrix-intro');
+  const introTextEl = $('#t-matrix-text');
 
   const lines = [
     { cmdId: 't-cmd-1', text: 'whoami', outId: 't-out-1' },
@@ -145,14 +255,22 @@ const initTerminal = async () => {
 
   const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-  // Clear command text initially so typing starts from blank
+  // Clear command text initially
   lines.forEach(({ cmdId }) => {
     const el = document.getElementById(cmdId);
     if (el) el.textContent = '';
   });
 
-  await sleep(400);
+  await sleep(300);
 
+  // Step 1: Matrix Introduction Sequence
+  if (introEl && introTextEl) {
+    introEl.classList.add('show');
+    await matrixScrambleText(introTextEl, 'MATRIX PROTOCOL: JEA_PORTFOLIO.SH [READY]', 750);
+    await sleep(400);
+  }
+
+  // Step 2: Sequential Matrix Command Typing
   for (const { cmdId, text, outId } of lines) {
     const cmdEl = document.getElementById(cmdId);
     const outEl = document.getElementById(outId);
@@ -163,19 +281,19 @@ const initTerminal = async () => {
 
     await sleep(200);
 
-    // Type character by character with natural typing cadence
-    for (let i = 0; i < text.length; i++) {
-      cmdEl.textContent += text[i];
-      await sleep(40 + Math.random() * 25);
-    }
+    // Matrix typing effect
+    await matrixTypeCommand(cmdEl, text, 45);
 
     await sleep(250);
     outEl.classList.add('show');
     await sleep(450);
   }
 
-  // Safety check: ensure everything is visible
-  $$('.terminal-line, .terminal-output').forEach(el => el.classList.add('show'));
+  // Safety fallback
+  setTimeout(() => {
+    if (introEl) introEl.classList.add('show');
+    $$('.terminal-line, .terminal-output').forEach(el => el.classList.add('show'));
+  }, 5000);
 };
 
 /* ─── PROJECT IMAGE FALLBACKS ────────────────────── */

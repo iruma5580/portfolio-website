@@ -116,35 +116,44 @@
             <span class="dot dot-green"></span>
           </div>
           <span class="terminal-title">bash — portfolio.sh</span>
+          <span class="terminal-matrix-tag"><span class="matrix-live-dot"></span> MATRIX.SYS</span>
         </div>
         <div class="terminal-body">
-          <div class="terminal-line">
-            <span class="t-prompt">~/portfolio</span>
-            <span class="t-sym">$</span>
-            <span class="t-cmd" id="t-cmd-1">whoami</span>
-          </div>
-          <div class="terminal-output" id="t-out-1">Jhon Eric V. Arbas</div>
+          <canvas id="terminal-matrix-canvas" class="terminal-matrix-canvas" aria-hidden="true"></canvas>
 
-          <div class="terminal-line t-delayed">
-            <span class="t-prompt">~/portfolio</span>
-            <span class="t-sym">$</span>
-            <span class="t-cmd" id="t-cmd-2">cat focus.txt</span>
-          </div>
-          <div class="terminal-output t-delayed-out" id="t-out-2">
-            Software Engineering • Web Systems<br/>
-            IoT Solutions • Workflow Automation
-          </div>
+          <div class="terminal-content">
+            <div class="terminal-matrix-intro" id="t-matrix-intro">
+              <span class="t-matrix-prompt">&gt;</span> <span class="t-matrix-text" id="t-matrix-text">INITIALIZING MATRIX SYSTEM...</span>
+            </div>
 
-          <div class="terminal-line t-delayed2">
-            <span class="t-prompt">~/portfolio</span>
-            <span class="t-sym">$</span>
-            <span class="t-cmd" id="t-cmd-3">status --current</span>
-          </div>
-          <div class="terminal-output t-delayed2-out" id="t-out-3">
-            <span class="t-green">✓</span> BS in Computer Science (AISAT '26)<br/>
-            <span class="t-green">✓</span> Data Analyst Intern (BP - Waterworks Inc.)<br/>
-            <span class="t-green">✓</span> Seeking Associate Software Engineer role<br/>
-            <span class="t-cursor" aria-hidden="true">█</span>
+            <div class="terminal-line">
+              <span class="t-prompt">~/portfolio</span>
+              <span class="t-sym">$</span>
+              <span class="t-cmd" id="t-cmd-1">whoami</span>
+            </div>
+            <div class="terminal-output" id="t-out-1">Jhon Eric V. Arbas</div>
+
+            <div class="terminal-line t-delayed">
+              <span class="t-prompt">~/portfolio</span>
+              <span class="t-sym">$</span>
+              <span class="t-cmd" id="t-cmd-2">cat focus.txt</span>
+            </div>
+            <div class="terminal-output t-delayed-out" id="t-out-2">
+              Software Engineering • Web Systems<br/>
+              IoT Solutions • Workflow Automation
+            </div>
+
+            <div class="terminal-line t-delayed2">
+              <span class="t-prompt">~/portfolio</span>
+              <span class="t-sym">$</span>
+              <span class="t-cmd" id="t-cmd-3">status --current</span>
+            </div>
+            <div class="terminal-output t-delayed2-out" id="t-out-3">
+              <span class="t-green">✓</span> BS in Computer Science (AISAT '26)<br/>
+              <span class="t-green">✓</span> Data Analyst Intern (BP - Waterworks Inc.)<br/>
+              <span class="t-green">✓</span> Seeking Associate Software Engineer role<br/>
+              <span class="t-cursor" aria-hidden="true">█</span>
+            </div>
           </div>
         </div>
       </div>

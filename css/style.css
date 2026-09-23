@@ -475,10 +475,87 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   margin-right: auto;
 }
 
-.terminal-body {
-  padding: 20px 22px;
-  min-height: 200px;
+.terminal-matrix-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #00ff66;
+  background: rgba(0, 255, 102, 0.08);
+  border: 1px solid rgba(0, 255, 102, 0.25);
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  letter-spacing: 0.08em;
 }
+
+.matrix-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff66;
+  box-shadow: 0 0 6px #00ff66;
+  animation: matrixPulse 1.5s infinite;
+}
+
+@keyframes matrixPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.terminal-body {
+  position: relative;
+  overflow: hidden;
+  padding: 20px 22px;
+  min-height: 220px;
+}
+
+.terminal-matrix-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.terminal-content {
+  position: relative;
+  z-index: 1;
+}
+
+.terminal-matrix-intro {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: #00ff66;
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.45);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed rgba(0, 255, 102, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.terminal-matrix-intro.show {
+  opacity: 1;
+}
+
+.t-matrix-prompt {
+  color: #00ff66;
+  font-weight: 700;
+  animation: blink 0.8s infinite;
+}
+
+.matrix-glitch {
+  color: #00ff66;
+  text-shadow: 0 0 7px #00ff66;
+  display: inline-block;
+}
+
 .terminal-line {
   display: flex;
   align-items: center;
@@ -496,9 +573,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   padding-left: 4px;
   line-height: 1.6;
 }
-.t-green { color: var(--green); }
+.t-green {
+  color: #00ff66;
+  text-shadow: 0 0 6px rgba(0, 255, 102, 0.4);
+}
 .t-cursor {
-  color: var(--accent);
+  color: #00ff66;
+  text-shadow: 0 0 8px #00ff66;
   animation: blink 1s step-end infinite;
 }
 @keyframes blink {
