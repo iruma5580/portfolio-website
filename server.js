@@ -39,6 +39,7 @@ if (!process.env.JWT_SECRET) {
 /* ─── MIDDLEWARE ──────────────────────────────────── */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api/chat', require('./routes/chat'));
 
 // Serve static portfolio files with fresh cache headers
 app.use(express.static(path.join(__dirname), {
